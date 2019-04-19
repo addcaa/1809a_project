@@ -139,6 +139,7 @@ class WxPayController extends Controller{
      */
     public function notify()
     {
+        // echo "11";
         $data = file_get_contents("php://input");
         //记录日志
         $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
