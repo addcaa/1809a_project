@@ -25,7 +25,7 @@ Route::get('/orders/index','Orders\OrdersController@index');
 Route::get('/orders/order','Orders\OrdersController@order');
 //微信支付
 Route::any('/weixin/test','WxPayController@test');
-Route::post('/wxpay/notify','WxPayController@notify');
+Route::post('/weixin/notify','WxPayController@notify');
 
 
 
