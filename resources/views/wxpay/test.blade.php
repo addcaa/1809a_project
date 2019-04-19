@@ -62,7 +62,7 @@
 <div class="flex-center position-ref full-height">
 <div class="content">
     <h2>微信支付</h2>
-    {{$code_url}}
+    code_url:{{$code_url}}
     <div class="title m-b-md">
         <div id="qrcode"></div>
 
