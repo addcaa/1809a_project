@@ -15,8 +15,18 @@ use App\Http\Controllers\Goods\GoodsController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('goods/index','Goods\GoodsController@index');
-Route::get('goods/cart/{goods_id}','Goods\GoodsController@cart');
+Route::get('/goods/index','Goods\GoodsController@index');
+Route::get('/goods/cart/{goods_id}','Goods\GoodsController@cart');
+
+//购物车
+Route::get('/cart/index','Cart\CartController@index');
+//支付
+Route::get('/orders/index','Orders\OrdersController@index');
+Route::get('/orders/order','Orders\OrdersController@order');
+//微信支付
+Route::any('/weixin/test','WxPayController@test');
+
+
 
 
 Auth::routes();

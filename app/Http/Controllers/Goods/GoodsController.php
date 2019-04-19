@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class GoodsController extends Controller
 {
     public function index(){
@@ -19,7 +20,45 @@ class GoodsController extends Controller
     }
     /**购物车*/
     public function cart($goods_id){
-        echo $goods_id;die;
-        // $
+        // dd(Session::getId());
+        //用户id
+        $user_id=Auth::id();
+        if($user_id==""){
+            header('Refresh:3;url=/login');
+            echo "请先登陆";
+        }
+        // echo $goods_id;die;
+        $goods_info=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
+        $cart_info=DB::table('cart')->where(['user_id'=>$user_id,'goods_id'=>$goods_id])->first();
+        // dd($goods_info);
+        if($cart_info){
+            $cart_num=DB::table('cart')->where(['user_id'=>$user_id,'goods_id'=>$goods_id])->value('cart_num');
+            $num=[
+                'cart_num'=>$cart_num+1,
+                'cart_time'=>time(),
+
+            ];
+            $cartarr=DB::table('cart')->where(['user_id'=>$user_id,'goods_id'=>$goods_id])->update($num);
+        }else{
+            $info=[
+                'goods_id'=>$goods_id,
+                'goods_price'=>$goods_info->goods_price,
+                'cart_num'=> +1,
+                'user_id'=>$user_id,
+                'session_id'=>Session::getId(), //绘画id
+                'cart_time'=>time(),
+
+            ];
+            // dd($info);
+            $cartarr=DB::table('cart')->insert($info);
+        }
+        if($cartarr){
+            header('Refresh:3;url=/cart/index');
+            echo "加入购物车成功";
+        }else{
+            header('Refresh:3;url=/goods/index');
+            echo "加入购物车失败";
+        }
+
     }
 }

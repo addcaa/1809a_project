@@ -7,7 +7,11 @@
     <title>商品展示</title>
 </head>
 <body>
-    <h3>欢迎<samp style="color:chartreuse">{{$user_name}}</samp>登陆</h3>
+    @if($user_name=="")
+    
+    @else
+        <h3>欢迎<samp style="color:chartreuse">{{$user_name}}</samp>登陆</h3>
+    @endif
     <table border=1>
         <tr>
             <td>ID</td>
