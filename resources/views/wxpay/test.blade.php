@@ -80,14 +80,14 @@
                 type: 'get',
                 dataType:'json',
                 success: function(res){
-                    // console.log(res)
-                    if(res.status==0){
-                        alert("支付成功");
-                        location.href = "/cart/index";
-                    }
+                    console.log(res)
+                    // if(res.status==0){
+                    //     alert("支付成功");
+                    //     location.href = "/cart/index";
+                    // }
                 }
             });
-        },2000)
+        },8000)
     </script>
     </div>
 </div>

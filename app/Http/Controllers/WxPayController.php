@@ -155,7 +155,8 @@ class WxPayController extends Controller{
                 //TODO 逻辑处理  订单状态更新
                 $pay_time=strtotime($xml->time_end);
                 //修改订单表  根据订单 改变  时间   价格
-                $res=DB::table('order')->where(['on_order'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
+                $res=DB::table('order')->where(['on_order'=>$xml->out_trade_no])->update(['totalprices'=>$xml->cash_fee,'pay_time'=>$pay_time]);
+                // dd($res);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];
