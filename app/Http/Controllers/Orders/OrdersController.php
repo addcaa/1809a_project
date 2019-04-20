@@ -26,7 +26,8 @@ class OrdersController extends Controller
         // dd($totalprices);
         $order_info=[
             'on_order'=>$rand,
-            'totalprices'=>$totalprices     //总价
+            'totalprices'=>$totalprices,  //总价
+            'pay_time'=>time(),
         ];
         $order_res=DB::table('order')->insert($order_info);
         // dd($order_res);
@@ -58,5 +59,27 @@ class OrdersController extends Controller
         $order_info=DB::table('order')->get();
         return view('orders.order',['order_info'=>$order_info]);
     }
-
+     /**
+     * 查询订单支付状态
+     */
+    public function paystatus(){
+        // echo "1";
+        $oid = intval($_GET['oid']);
+        dd($oid);
+        $order_info=DB::table('order')->where(['oid'=>$oid])->first();
+        // dd($order_info);
+        $response = [];
+        if($order_info){
+            if($order_info->pay_time>0){      //已支付
+                $response = [
+                    'status'    => 0,       // 0 已支付
+                    'msg'       => 'ok'
+                ];
+            }
+            // echo '<pre>';print_r($order_info->toArray());echo '</pre>';
+        }else{
+            die("订单不存在");
+        }
+        die(json_encode($response));
+    }
 }

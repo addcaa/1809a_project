@@ -62,24 +62,35 @@
 <div class="flex-center position-ref full-height">
 <div class="content">
     <h2>微信支付</h2>
-    code_url:{{$code_url}}
+    <!-- code_url:{{$code_url}} -->
     <div class="title m-b-md">
         <div id="qrcode"></div>
 
     </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/qrcode.min.js"></script>
+    <script src="\js\jquery-3.1.1.min.js"></script>
+
     <script type="text/javascript">
-            var qrcode = new QRCode('qrcode',{
-            text:'{{$code_url}}',
-            width:256,
-            height:256,
-            colorDark : '#000000',
-            colorLight : '#ffffff',
-            correctLevel : QRCode.CorrectLevel.H
-        });
+    new QRCode(document.getElementById("qrcode"), "{{$code_url}}");
+        //ajax轮询，检查订单支付状态
+        setInterval(function(){
+            $.ajax({
+                url : '/orders/paystatus?oid=' + "{{$oid}}",
+                type: 'get',
+                dataType:'json',
+                success: function(res){
+                    // console.log(res)
+                    if(res.status==0){
+                        alert("支付成功");
+                        location.href = "/cart/index";
+                    }
+                }
+            });
+        },2000)
     </script>
     </div>
 </div>
 </body>
 </html>
+

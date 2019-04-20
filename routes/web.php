@@ -26,6 +26,8 @@ Route::get('/orders/order','Orders\OrdersController@order');
 //微信支付
 Route::get('/weixin/test','WxPayController@test');
 Route::any('/weixin/notify','WxPayController@notify');
+//查询订单状态
+Route::get('/orders/paystatus','Orders\OrdersController@paystatus');
 
 
 

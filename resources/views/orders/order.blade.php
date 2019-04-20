@@ -19,7 +19,7 @@
             <td>{{$v->oid}}</td>
             <td>{{$v->on_order}}</td>
             <td>{{$v->totalprices}}</td>
-            <td><a href="/weixin/test?on_order={{{$v->on_order}}}">立刻结算</a></td>
+            <td><a href="/weixin/test?oid={{$v->oid}}">立刻结算</a></td>
 
         </tr>
         @endforeach

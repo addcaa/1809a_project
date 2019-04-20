@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Weixin\WXBizDataCryptController;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 class WxPayController extends Controller{
     //统一下接口
     public $weixin_unifiedorder_url='https://api.mch.weixin.qq.com/pay/unifiedorder';
@@ -14,7 +15,9 @@ class WxPayController extends Controller{
         //用户要支付的总金额
         // $total_fee=request()->input('order_num');
         //  //本地订单号
-        $order_id=$_GET['on_order'];
+        // $order_id=$_GET['on_order'];
+        $oid=$_GET['oid'];
+        $order_id=DB::table('order')->where(['oid'=>$oid])->value('on_order');
         // $order_id=request()->input('order_no');
         // dd($order_id);
         $total_fee = 1;
@@ -45,7 +48,7 @@ class WxPayController extends Controller{
         // echo 'code_url: '.$data->code_url;echo '<br>';
         $code_url=$data->code_url;
         // print_r($data) ;die;
-        return view('wxpay.test',['code_url'=>$code_url]);
+        return view('wxpay.test',['code_url'=>$code_url,'oid'=>$oid]);
     }
     protected function ToXml()
     {
@@ -151,6 +154,9 @@ class WxPayController extends Controller{
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
                 echo "下单成功";
+                $pay_time=strtotime($xml->time_end);
+                //修改订单表  根据订单 改变  时间   价格
+                $res=DB::table('order')->where(['on_order'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];
