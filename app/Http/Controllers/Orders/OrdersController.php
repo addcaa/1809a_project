@@ -65,7 +65,7 @@ class OrdersController extends Controller
     public function paystatus(){
         // echo "1";
         $oid = intval($_GET['oid']);
-        dd($oid);
+        // dd($oid);
         $order_info=DB::table('order')->where(['oid'=>$oid])->first();
         // dd($order_info);
         $response = [];
