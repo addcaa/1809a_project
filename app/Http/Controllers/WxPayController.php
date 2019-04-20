@@ -153,7 +153,6 @@ class WxPayController extends Controller{
             $sign = true;
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
-                echo "下单成功";
                 $pay_time=strtotime($xml->time_end);
                 //修改订单表  根据订单 改变  时间   价格
                 $res=DB::table('order')->where(['on_order'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);

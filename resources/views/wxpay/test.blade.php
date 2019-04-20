@@ -72,7 +72,7 @@
     <script src="\js\jquery-3.1.1.min.js"></script>
 
     <script type="text/javascript">
-    new QRCode(document.getElementById("qrcode"), "{{$code_url}}");
+        new QRCode(document.getElementById("qrcode"), "{{$code_url}}");
         //ajax轮询，检查订单支付状态
         setInterval(function(){
             $.ajax({
