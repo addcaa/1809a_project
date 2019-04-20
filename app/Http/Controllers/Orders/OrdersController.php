@@ -55,7 +55,7 @@ class OrdersController extends Controller
         return $rand = time().'cuifang'.mt_rand(11111,99999);
     }
     public function order(){
-        $order_info=DB::table('order')->get();
+        $order_info=DB::table('order')->where(['pay_time'=>0])->get();
         return view('orders.order',['order_info'=>$order_info]);
     }
      /**
