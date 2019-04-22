@@ -8,7 +8,7 @@
 </head>
 <body>
     @if($user_name=="")
-    
+
     @else
         <h3>欢迎<samp style="color:chartreuse">{{$user_name}}</samp>登陆</h3>
     @endif
@@ -19,16 +19,14 @@
             <td>商品价格：</td>
             <td>商品图片</td>
             <td>商品已售：</td>
-            <td>加入购物车：</td>
         </tr>
         @foreach($goods_info as $v)
         <tr>
             <td>{{$v->goods_id}}</td>
-            <td>{{$v->goods_name}}</td>
+            <td><a href="/goods/list/{{$v->goods_id}}">{{$v->goods_name}}</a></td>
             <td>{{$v->goods_price}}</td>
-            <td><img src="http://www.uploads.com/uploads/{{$v->goods_img}}" alt='暂无图片' width="40px;"></td>
+            <td><a href="/goods/list/{{$v->goods_id}}"><img src="http://www.uploads.com/uploads/{{$v->goods_img}}" alt='暂无图片' width="40px;"></a></td>
             <td>{{$v->goods_sales}}</td>
-            <td> <a href="/goods/cart/{{$v->goods_id}}">加入购物车</a></td>
         </tr>
         @endforeach
     </table>

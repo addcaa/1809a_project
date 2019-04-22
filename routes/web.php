@@ -17,6 +17,7 @@ Route::get('/', function () {
 });
 Route::get('/goods/index','Goods\GoodsController@index');
 Route::get('/goods/cart/{goods_id}','Goods\GoodsController@cart');
+Route::get('/goods/list/{id}','Goods\GoodsController@list');
 
 //购物车
 Route::get('/cart/index','Cart\CartController@index');

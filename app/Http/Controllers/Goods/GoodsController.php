@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redis;
 class GoodsController extends Controller
 {
     public function index(){
@@ -36,7 +37,6 @@ class GoodsController extends Controller
             $num=[
                 'cart_num'=>$cart_num+1,
                 'cart_time'=>time(),
-
             ];
             $cartarr=DB::table('cart')->where(['user_id'=>$user_id,'goods_id'=>$goods_id])->update($num);
         }else{
@@ -60,5 +60,17 @@ class GoodsController extends Controller
             echo "加入购物车失败";
         }
 
+    }
+    public function list($goods_id){
+        $redis_incr=Redis::incr($goods_id);
+        // dd($redis_incr);
+        $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->value('goods_num');
+        $where=[
+            'goods_num'=>$goods_num+1
+        ];
+        $num=DB::table('goods')->where(['goods_id'=>$goods_id])->update($where);
+        // dd($num);
+        $goods_info=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
+        return view('goods/list',['goods_info'=>$goods_info,'redis_incr'=>$redis_incr]);
     }
 }
