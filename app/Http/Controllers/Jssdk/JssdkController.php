@@ -13,7 +13,6 @@ class JssdkController extends Controller{
         $nonceStr=Str::random(10);
         $timestamp=time();
         $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-        // dd($url);
         $res="jsapi_ticket$jsapi_ticket&noncestr$nonceStr&timestamp$timestamp&url$url";
         //签名
         $signature=sha1($res);
@@ -23,6 +22,7 @@ class JssdkController extends Controller{
             'nonceStr'=>$nonceStr,       // 必填，生成签名的随机串
             'signature'=>$signature     // 必填，签名
         ];
+        // dd($arr);
         return view('jssdk/jssdk',['arr'=>$arr]);
     }
 }
