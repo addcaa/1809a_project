@@ -58,7 +58,7 @@
                             console.log(d);
                         }
                     })
-                    console.log(img);
+                    console.log(serverId);
                 }
             });
         })
