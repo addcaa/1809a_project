@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Jssdk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use GuzzleHttp\Psr7\Uri;
+use GuzzleHttp\Client;
+
 class JssdkController extends Controller{
 
     //jssdk 使用
@@ -29,6 +32,16 @@ class JssdkController extends Controller{
         return view('jssdk/jssdk',['arr'=>$arr]);
     }
     public function geting(){
-        dd( $_GET);
+        $access_token=getaccesstoken();
+
+        $media_id=$_GET;
+        // $media_id=explode(',',rtrim($media_id,','));
+        $url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=$access_token&media_id=$media_id";
+        // dd($url);
+        $resvideo=file_get_contents($url);
+        // var_dump($url);
+        $sub=Str::random(10);
+        // dd($sub);/
+        file_put_contents("/wwwroot/project/public/img/$sub.png",$resvideo,FILE_APPEND);
     }
 }
