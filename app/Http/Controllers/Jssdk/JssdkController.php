@@ -35,7 +35,7 @@ class JssdkController extends Controller{
         $access_token=getaccesstoken();
 
         $media_id=$_GET;
-        var_dump($media_id);
+        // var_dump($media_id);
         // $media_id=explode(',',rtrim($media_id,','));
         $url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=$access_token&media_id=$media_id";
         // dd($url);
