@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 class GetimgController extends Controller
 {
+    //
     public function geting(){
         dd($_GET);
     }
