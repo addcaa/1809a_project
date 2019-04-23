@@ -25,7 +25,7 @@ class JssdkController extends Controller{
             'nonceStr'=>$nonceStr,       // 必填，生成签名的随机串
             'signature'=>$sign     // 必填，签名
         ];
-        dd($arr);
+        // dd($arr);
         return view('jssdk/jssdk',['arr'=>$arr]);
     }
 }
