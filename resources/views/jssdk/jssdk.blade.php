@@ -20,7 +20,7 @@
         timestamp:"{{$arr['timestamp']}}" , // 必填，生成签名的时间戳
         nonceStr: "{{$arr['nonceStr']}}", // 必填，生成签名的随机串
         signature: "{{$arr['signature']}}",// 必填，签名
-        jsApiList: ['chooseImage','uploadImage'] // 必填，需要使用的JS接口列表
+        jsApiList: ['chooseImage','uploadImage','downloadImage'] // 必填，需要使用的JS接口列表
     });
     wx.ready(function(){
         $("#btn1").click(function(){
@@ -41,13 +41,13 @@
                             isShowProgressTips: 1, // 默认为1，显示进度提示
                             success: function (res) {
                                 var serverId = res.serverId; // 返回图片的服务器端ID
-                                wx.downloadImage({
-                                    serverId: 'serverId', // 需要下载的图片的服务器端ID，由uploadImage接口获得
-                                    isShowProgressTips: 1, // 默认为1，显示进度提示
-                                    success: function (res) {
-                                        var localId = res.localId; // 返回图片下载后的本地ID
-                                    }
-                                });
+                            }
+                        });
+                        wx.downloadImage({
+                            serverId: 'serverId', // 需要下载的图片的服务器端ID，由uploadImage接口获得
+                            isShowProgressTips: 1, // 默认为1，显示进度提示
+                            success: function (res) {
+                                var localId = res.localId; // 返回图片下载后的本地ID
                             }
                         });
                     })
