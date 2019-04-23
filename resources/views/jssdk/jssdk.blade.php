@@ -18,7 +18,7 @@
         timestamp:"{{$arr['timestamp']}}" ,
         nonceStr: "{{$arr['nonceStr']}}",
         signature: "{{$arr['signature']}}",
-        jsApiList: "['chooseImage']"
+        jsApiList: ['chooseImage']
     });
 
     wx.ready(function(){
