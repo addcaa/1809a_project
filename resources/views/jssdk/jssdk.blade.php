@@ -8,8 +8,7 @@
 </head>
 <body>
     <button id="btn1">请选择照片</button>
-</body>
-</html>
+
 <script src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script>
@@ -35,3 +34,6 @@
         })
     })
 </script>
+</body>
+</html>
+
