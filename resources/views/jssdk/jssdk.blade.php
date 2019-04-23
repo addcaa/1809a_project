@@ -39,18 +39,18 @@
                             isShowProgressTips: 1, // 默认为1，显示进度提示
                             success: function (res) {
                                 var serverId = res.serverId; // 返回图片的服务器端ID
-                                alert('serverID:'+serverId);
+                                // alert('serverID:'+serverId);
                             }
                         });
                     })
 
-                    $.ajax({
-                        url:'/jssdk/geting?img='+img,  //将上传的图片id发送给后端
-                        type: 'get',
-                        success:function(d){
-                            console.log(d);
-                        }
-                    })
+                    // $.ajax({
+                    //     url:'/jssdk/geting?img='+img,  //将上传的图片id发送给后端
+                    //     type: 'get',
+                    //     success:function(d){
+                    //         console.log(d);
+                    //     }
+                    // })
                     console.log(img);
                 }
             });
