@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Jssdk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class getimgController extends Controller
+class GetimgController extends Controller
 {
-    public function jssdk(){
+    public function geting(){
         dd($_GET);
     }
 }
