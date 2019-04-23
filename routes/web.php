@@ -31,7 +31,7 @@ Route::any('/weixin/notify','WxPayController@notify');
 Route::get('/orders/paystatus','Orders\OrdersController@paystatus');
 
 Route::get('/jssdk/jssdk','Jssdk\JssdkController@jssdk');
-Route::get('/jssdk/geting','Jssdk\GetimgController@geting');
+Route::get('/jssdk/geting','Jssdk\JssdkController@geting');
 
 
 

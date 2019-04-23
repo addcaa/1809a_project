@@ -28,4 +28,7 @@ class JssdkController extends Controller{
         // dd($arr);
         return view('jssdk/jssdk',['arr'=>$arr]);
     }
+    public function geting(){
+        dd($_GET);
+    }
 }
