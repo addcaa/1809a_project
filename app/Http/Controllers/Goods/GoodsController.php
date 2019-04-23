@@ -62,7 +62,8 @@ class GoodsController extends Controller
 
     }
     public function list($goods_id){
-        $redis_incr=Redis::incr($goods_id);
+        $id='goods_id'.$goods_id;
+        $redis_incr=Redis::incr($id);
         // dd($redis_incr);
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->value('goods_num');
         $where=[
@@ -71,6 +72,21 @@ class GoodsController extends Controller
         $num=DB::table('goods')->where(['goods_id'=>$goods_id])->update($where);
         // dd($num);
         $goods_info=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
-        return view('goods/list',['goods_info'=>$goods_info,'redis_incr'=>$redis_incr]);
+
+        //浏览记录
+        $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
+        $key="jilu";
+        Redis::Zadd($key,$redis_incr,$goods_id);
+        $res=Redis::zRevRange($key,0,100,true);
+        $arr_info=[];
+        foreach($res as $k=>$v){
+            $arr_info[]=DB::table('goods')->where(['goods_id'=>$k])->first();
+        }
+        $data=[
+            'goods_info'=>$goods_info,
+            'redis_incr'=>$redis_incr,
+            'arr_info'=>$arr_info
+        ];
+        return view('goods/list',$data);
     }
 }

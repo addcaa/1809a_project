@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+    <table border=1>
         <tr>
             <td>ID</td>
             <td>{{$goods_info->goods_id}}</td>
@@ -26,11 +26,26 @@
         </tr>
         <tr>
             <td>浏览量</td>
-            <td>{{$goods_info->goods_num}}</td>
-            <td>redis:{{$redis_incr}}</td>
-
+            <td>{{$goods_info->goods_num}}  O(∩_∩)O~    redis:{{$redis_incr}}</td>
         </tr>
-        <tr><td> <a href="/goods/cart/{{$goods_info->goods_id}}">加入购物车</a></td></tr>
+        <tr>><td> <a href="/goods/cart/{{$goods_info->goods_id}}">加入购物车</a></td></tr>
+    </table>
+    <h2>浏览历史</h2>
+    <table border=1>
+        <tr>
+            <td>ID:</td>
+            <td>商品id</td>
+            <td>价格</td>
+            <td>图片</td>
+        </tr>
+        @foreach($arr_info as $v)
+        <tr>
+            <td>{{$v->goods_id}}</td>
+            <td>{{$v->goods_name}}</td>
+            <td>{{$v->goods_price}}</td>
+            <td><img src="http://www.uploads.com/uploads/{{$v->goods_img}}" alt="" width="40"></td>
+        </tr>
+        @endforeach
     </table>
 </body>
 </html>
