@@ -43,6 +43,6 @@ class JssdkController extends Controller{
         // var_dump($url);
         $sub=Str::random(10);
         // dd($sub);/
-        file_put_contents("/wwwroot/project/public/img/$sub.png",$resvideo,FILE_APPEND);
+        file_put_contents("/wwwroot/1809a_project/public/img/$sub.png",$resvideo,FILE_APPEND);
     }
 }
