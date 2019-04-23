@@ -23,7 +23,7 @@
 
     wx.ready(function(){
         $("#btn1").click(function(){
-            alert(11);
+            // alert(11);
             wx.chooseImage({
                 count: 3, // 默认9
                 sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
