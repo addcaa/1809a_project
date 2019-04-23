@@ -30,6 +30,9 @@ Route::any('/weixin/notify','WxPayController@notify');
 //查询订单状态
 Route::get('/orders/paystatus','Orders\OrdersController@paystatus');
 
+Route::get('/jssdk/jssdk','Jssdk\JssdkController@jssdk');
+
+
 
 
 
