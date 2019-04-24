@@ -13,8 +13,7 @@ use App\Http\Controllers\Goods\GoodsController;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/jssdk/getu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+    return view('welcome');
 });
 Route::get('/goods/index','Goods\GoodsController@index');
 Route::get('/goods/cart/{goods_id}','Goods\GoodsController@cart');
