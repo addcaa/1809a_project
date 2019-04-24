@@ -48,6 +48,10 @@ class JssdkController extends Controller{
         file_put_contents("/wwwroot/1809a_project/public/img/$sub.png",$resvideo,FILE_APPEND);
     }
     public function getu(){
-        print_r($_GET);
+        $code=$_GET['code'];
+        $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APP_ID').'&secret='.env('WX_APP_SEC').'&code='.$code.'&grant_type=authorization_code';
+        $pesponse=json_decode(file_get_contents($url),true);
+        print_r($pesponse);
+
     }
 }
