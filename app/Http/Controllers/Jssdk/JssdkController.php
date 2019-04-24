@@ -47,6 +47,10 @@ class JssdkController extends Controller{
         // dd($sub);/
         file_put_contents("/wwwroot/1809a_project/public/img/$sub.png",$resvideo,FILE_APPEND);
     }
+    /**
+     *
+     * 微信网页授权
+     */
     public function getu(){
         $code=$_GET['code'];
         $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APP_ID').'&secret='.env('WX_APP_SEC').'&code='.$code.'&grant_type=authorization_code';
@@ -55,21 +59,24 @@ class JssdkController extends Controller{
         $openid=$pesponse['openid'];
         $access_info="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
         $user=json_decode(file_get_contents($access_info),true);
-        $log_str = date('Y-m-d H:i:s') . "\n" . $user . "\n<<<<<<<";
-        file_put_contents('logs/wx_user_notice.log',$log_str,FILE_APPEND);
-        // $info=[
-        //     'openid'=>$user['openid'],
-        //     'name'=>$user['nickname'],
-        //     'headimgurl'=>$url['headimgurl']
-        // ];
-        // print_r($info);
-
-        // $wx_user=WxUserModel::insert($info);
-        // if($wx_user){
-        //     echo "成功";
-        // }else{
-        //     echo "失败";
-        // }
+        $openid=$user['openid'];
+        $name=$user['nickname'];
+        $user_info=WxUserModel::where(['openid'=>$openid])->first();
+        if($user_info){
+            echo "欢迎回来$name";
+        }else{
+            $info=[
+                'openid'=>$user['openid'],
+               'name'=>$user['nickname'],
+               'headimgurl'=>$user['headimgurl']
+            ];
+            $wx_user=WxUserModel::insert($info);
+            if($wx_user){
+                echo "成功$name";
+            }else{
+                echo "失败";
+            }
+        }
 
     }
 }
