@@ -56,8 +56,8 @@ class JssdkController extends Controller{
         $access_info="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
         $user=json_decode(file_get_contents($access_info),true);
         // print_r($user);
-        $log_str = date('Y-m-d H:i:s') . "\n" . $user . "\n<<<<<<<";
-        file_put_contents('logs/wx_user_notice.log',$log_str,FILE_APPEND);
+        // $log_str = date('Y-m-d H:i:s') . "\n" . $user . "\n<<<<<<<";
+        // file_put_contents('logs/wx_user_notice.log',$log_str,FILE_APPEND);
         // $info=[
         //     'openid'=>$user['openid'],
         //     'name'=>$user['nickname'],
