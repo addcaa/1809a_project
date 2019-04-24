@@ -47,4 +47,7 @@ class JssdkController extends Controller{
         // dd($sub);/
         file_put_contents("/wwwroot/1809a_project/public/img/$sub.png",$resvideo,FILE_APPEND);
     }
+    public function getu(){
+        print_r($_GET);
+    }
 }

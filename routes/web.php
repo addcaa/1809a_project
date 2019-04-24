@@ -13,7 +13,8 @@ use App\Http\Controllers\Goods\GoodsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/jssdk/getu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 });
 Route::get('/goods/index','Goods\GoodsController@index');
 Route::get('/goods/cart/{goods_id}','Goods\GoodsController@cart');
@@ -32,6 +33,8 @@ Route::get('/orders/paystatus','Orders\OrdersController@paystatus');
 
 Route::get('/jssdk/jssdk','Jssdk\JssdkController@jssdk');
 Route::get('/jssdk/geting','Jssdk\JssdkController@geting');
+Route::get('/jssdk/getu','Jssdk\JssdkController@getu');
+
 
 //任务计划
 Route::get('/crontab/delorders','Crontab\CrontabController@delorders');
