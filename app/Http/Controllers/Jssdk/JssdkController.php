@@ -72,7 +72,7 @@ class JssdkController extends Controller{
             ];
             $wx_user=WxUserModel::insert($info);
             if($wx_user){
-                echo "成功$name";
+                echo "欢迎$name";
             }else{
                 echo "失败";
             }
