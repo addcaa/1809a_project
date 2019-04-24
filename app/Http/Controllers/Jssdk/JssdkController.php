@@ -51,7 +51,11 @@ class JssdkController extends Controller{
         $code=$_GET['code'];
         $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APP_ID').'&secret='.env('WX_APP_SEC').'&code='.$code.'&grant_type=authorization_code';
         $pesponse=json_decode(file_get_contents($url),true);
-        print_r($pesponse);
+        $access_token=$pesponse['access_token'];
+        $openid=$pesponse['openid'];
+        $access_info="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
+        $user=json_decode(file_get_contents($access_info),true);
+        print_r($user);
 
     }
 }
