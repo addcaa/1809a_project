@@ -27,6 +27,7 @@ class OrdersController extends Controller
         $order_info=[
             'on_order'=>$rand,
             'totalprices'=>$totalprices,  //总价
+            'add_time'=>time()
         ];
         $order_res=DB::table('order')->insert($order_info);
         // dd($order_res);

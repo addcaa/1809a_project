@@ -33,6 +33,9 @@ Route::get('/orders/paystatus','Orders\OrdersController@paystatus');
 Route::get('/jssdk/jssdk','Jssdk\JssdkController@jssdk');
 Route::get('/jssdk/geting','Jssdk\JssdkController@geting');
 
+//任务计划
+Route::get('/crontab/delorders','Crontab\CrontabController@delorders');
+
 
 
 
