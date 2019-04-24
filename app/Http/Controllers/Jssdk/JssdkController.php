@@ -49,6 +49,5 @@ class JssdkController extends Controller{
     }
     public function getu(){
         print_r($_GET);
-
     }
 }

@@ -40,7 +40,9 @@ Route::get('/crontab/delorders','Crontab\CrontabController@delorders');
 
 
 
-
+/**
+ * 后台
+ */
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
