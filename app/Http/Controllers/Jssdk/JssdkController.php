@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Client;
-
+use App\Model\WxUserModel;
 class JssdkController extends Controller{
 
     //jssdk 使用
@@ -55,7 +55,18 @@ class JssdkController extends Controller{
         $openid=$pesponse['openid'];
         $access_info="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
         $user=json_decode(file_get_contents($access_info),true);
-        print_r($user);
+        // print_r($user);
+        $info=[
+            'openid'=>$user['openid'],
+            'name'=>$user['nickname'],
+            'headimgurl'=>$url['headimgurl']
+        ];
+        $wx_user=WxUserModel::insert($info);
+        if($wx_user){
+            echo "成功";
+        }else{
+            echo "失败";
+        }
 
     }
 }
