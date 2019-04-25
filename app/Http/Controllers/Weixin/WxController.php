@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Weixin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 class WxController extends Controller{
     public function valid(){
         echo $_GET['echostr'];
@@ -19,6 +20,30 @@ class WxController extends Controller{
         $openid=$data->FromUserName;
         $wx_id=$data->ToUserName;
         $event = $data->Event;
+        $MsgType=$data->MsgType;
+        $content=$data->Content;
+        $u=$this->getUserInfo($openid);
+        //获取素材
+        if($MsgType=="text"){
+            //文字
+            // echo $content;die;
+            $text="有什么可以帮助你的吗";
+            $info=[
+                    'openid'=>$openid,
+                    'm_name'=>$u['nickname'],
+                    'm_sex'=>$u['sex'],
+                    'm_text'=> $content
+            ];
+            $arr=DB::table('message')->insert($info);
+            echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+                <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                <CreateTime>'.time().'</CreateTime>
+                <MsgType><![CDATA[text]]></MsgType>
+               <Content>![CDATA['.$text.']</Content>
+                </xml>
+                ';
+        }
+        //判断扫码
         if($event=='subscribe'){
             $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
             if($user_info){
