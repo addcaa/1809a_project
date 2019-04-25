@@ -16,8 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 //微信
-Route::get('/weixi/valid','Wxcontroller@valid');
-Route::post('/weixi/valid','Wxcontroller@index');
+Route::get('/weixi/valid','Weixin\Wxcontroller@valid');
+Route::post('/weixi/valid','Weixin\Wxcontroller@index');
 
 
 
