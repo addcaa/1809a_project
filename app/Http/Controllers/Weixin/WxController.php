@@ -48,7 +48,6 @@ class WxController extends Controller{
                <Content>![CDATA['.'欢迎关注'.$u['nickname'].']]</Content>
                 </xml>
                 ';
-
             }
         }else if($event=="unsubscribe"){
             // echo "取关";
@@ -56,7 +55,6 @@ class WxController extends Controller{
             // echo $res;die;
         }
     }
-
     /**用户信息 */
     public function getUserInfo($openid){
         $access_token=getaccesstoken();
