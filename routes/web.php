@@ -15,6 +15,13 @@ use App\Http\Controllers\Goods\GoodsController;
 Route::get('/', function () {
     return view('welcome');
 });
+//微信
+Route::get('/weixi/valid','Wxcontroller@valid');
+Route::post('/weixi/valid','Wxcontroller@index');
+
+
+
+
 Route::get('/goods/index','Goods\GoodsController@index');
 Route::get('/goods/cart/{goods_id}','Goods\GoodsController@cart');
 Route::get('/goods/list/{id}','Goods\GoodsController@list');

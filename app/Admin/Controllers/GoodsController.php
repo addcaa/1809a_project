@@ -81,15 +81,12 @@ class GoodsController extends Controller
     {
         $grid = new Grid(new GoodsModel);
 
-        $grid->goods_id('Goods id');
-        $grid->goods_name('Goods name');
-        $grid->goods_img('Goods img');
-        $grid->slider_img('Slider img');
-        $grid->goods_price('Goods price');
-        $grid->is_show('Is show');
-        $grid->cate_id('Cate id');
-        $grid->brand_id('Brand id');
-        $grid->market_price('Market price');
+        $grid->goods_id('ID');
+        $grid->goods_name('商品名称');
+        $grid->goods_img('商品图片')->display(function($img){
+            return '<img src="http://www.uploads.com/uploads/'.$img.'" width="20">';
+        });
+        $grid->goods_price('商品价格');
         $grid->goods_core('Goods core');
         $grid->goods_stock('Goods stock');
         $grid->goods_static('Goods static');
