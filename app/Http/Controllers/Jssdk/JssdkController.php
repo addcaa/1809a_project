@@ -52,6 +52,7 @@ class JssdkController extends Controller{
      * 微信网页授权
      */
     public function getu(){
+        //接收code
         $code=$_GET['code'];
         $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APP_ID').'&secret='.env('WX_APP_SEC').'&code='.$code.'&grant_type=authorization_code';
         $pesponse=json_decode(file_get_contents($url),true);
@@ -63,7 +64,7 @@ class JssdkController extends Controller{
         $name=$user['nickname'];
         $user_info=WxUserModel::where(['openid'=>$openid])->first();
         if($user_info){
-            echo "欢迎回来$name";
+            echo "欢迎回来$name";die;
         }else{
             $info=[
                 'openid'=>$user['openid'],
@@ -72,9 +73,9 @@ class JssdkController extends Controller{
             ];
             $wx_user=WxUserModel::insert($info);
             if($wx_user){
-                echo "欢迎$name";
+                echo "欢迎$name";die;
             }else{
-                echo "失败";
+                echo "失败";die;
             }
         }
 
