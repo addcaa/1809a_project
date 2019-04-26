@@ -9,7 +9,7 @@ use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\json_decode;
-
+use GuzzleHttp\Client;
 class MassController extends Controller{
     public function list(Content $Content){
         // return view('/mass/list');
@@ -31,8 +31,11 @@ class MassController extends Controller{
         $url="https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=$access_token";
         $arr=json_decode(file_get_contents($url),true);
         //  print_r($openid_arr);die;
-        $response=$this->sendmse($openid,$msg);
-        echo $response;
+        $client= new Client();
+        $response=$client->request('post',$url,[
+            'body'=>$data,
+        ]);
+        return $response->getBody();
     }
 }
 ?>
