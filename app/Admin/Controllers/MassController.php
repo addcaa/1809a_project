@@ -26,7 +26,9 @@ class MassController extends Controller{
         $msg=[
             "touser"=>$openid,
             "msgtype"=>"text",
-            "text"=>$text
+            'text'=>[
+                'content'=>$text
+            ],
         ];
         // dd($msg);
         $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
