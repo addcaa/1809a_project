@@ -34,7 +34,9 @@ class MassController extends Controller{
         $response=$client->request('post',$url,[
             'body'=>$data,
         ]);
-        return $response->getBody();
+        $obj=$response->getBody();
+        $arr=json_decode($obj,true);
+        var_dump($arr);die;
     }
 }
 ?>
