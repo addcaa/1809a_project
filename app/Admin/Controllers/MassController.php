@@ -19,6 +19,8 @@ class MassController extends Controller{
     public function addo(){
         $openid=$_POST['openid'];
         $text=$_POST['text'];
+        $access_token=getaccesstoken();
+        $url="https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=$access_token";
         $msg=[
             "touser"=>$openid,
             "msgtype"=>"text",
@@ -27,9 +29,6 @@ class MassController extends Controller{
         // dd($openid,$text);
         $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
         // dd($data);
-        $access_token=getaccesstoken();
-        $url="https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=$access_token";
-        $arr=json_decode(file_get_contents($url),true);
         //  print_r($openid_arr);die;
         $client= new Client();
         $response=$client->request('post',$url,[
