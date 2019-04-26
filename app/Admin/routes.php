@@ -14,5 +14,8 @@ Route::group([
     $router->resource('/goods', GoodsController::class);
     $router->resource('/orderlist', OrderController::class);
     $router->resource('/userwx', UserController::class);
+    $router->resource('/messag', MessagController::class);
+    $router->get('/mass/list', 'MassController@list');
+    $router->post('/mass/addo', 'MassController@addo');
 
 });

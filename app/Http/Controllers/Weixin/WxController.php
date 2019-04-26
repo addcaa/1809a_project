@@ -11,6 +11,7 @@ class WxController extends Controller{
         echo $_GET['echostr'];
     }
     public function index(){
+        //接收推送事件
         $content=file_get_contents("php://input");
         $time=date('Y-m-d H:i:s');
         $str=$time.$content."\n";
@@ -25,8 +26,6 @@ class WxController extends Controller{
         $u=$this->getUserInfo($openid);
         //获取素材
         if($MsgType=="text"){
-            //文字
-            // echo $content;die;
             $text="有什么可以帮助你的吗";
             $info=[
                     'openid'=>$openid,

@@ -20,7 +20,11 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        '/weixin/notify',
-        '/weixi/valid'
+        "*"
+        // '/weixin/notify',
+        // '/weixi/valid',
+        // '/admin/messag',
+        // '/mass/addo',
+        // '/addo'
     ];
 }

@@ -190,3 +190,156 @@
 <MsgId>22279345561126328</MsgId>
 </xml>
 
+2019-04-26 08:53:44<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[查一下明天从北京到上海的南航机票]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 09:11:34{
+     "kf_account" : "test1@test",
+     "nickname" : "客服1",
+     "password" : "pswmd5"
+}
+2019-04-26 09:14:34 <xml> 
+  <ToUserName><![CDATA[touser]]></ToUserName>  
+  <FromUserName><![CDATA[fromuser]]></FromUserName>  
+  <CreateTime>1399197672</CreateTime>  
+  <MsgType><![CDATA[transfer_customer_service]]></MsgType> 
+</xml>
+2019-04-26 09:14:57 <xml> 
+  <ToUserName><![CDATA[touser]]></ToUserName>  
+  <FromUserName><![CDATA[fromuser]]></FromUserName>  
+  <CreateTime>1399197672</CreateTime>  
+  <MsgType><![CDATA[transfer_customer_service]]></MsgType>  
+  <TransInfo> 
+    <KfAccount><![CDATA[test1@test]]></KfAccount> 
+  </TransInfo> 
+</xml>
+2019-04-26 11:04:59<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[哈哈]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:27:12<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[哈哈]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:28:17<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[哈哈]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:28:39<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:30:27<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:30:47<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:31:48<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:37:02<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:37:09<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:39:38<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:41:04<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:41:59<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京-天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:42:22<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京-天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:43:08<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京+天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:43:26<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京+天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:43:49<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京+天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:44:20<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京+天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
+2019-04-26 11:44:28<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556238892</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[北京-天气]]></Content>
+<MsgId>22279983886433246</MsgId>
+</xml>
