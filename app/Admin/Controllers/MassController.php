@@ -20,14 +20,15 @@ class MassController extends Controller{
         $openid=$_POST['openid'];
         $openid=explode(',',$openid);
         $text=$_POST['text'];
+        // dd($text);
         $access_token=getaccesstoken();
         $url="https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=$access_token";
         $msg=[
             "touser"=>$openid,
             "msgtype"=>"text",
-            "text"=>['text'=>$text]
+            "text"=>$text
         ];
-        // dd($openid,$text);
+        // dd($msg);
         $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
         // dd($data);
         //  print_r($openid_arr);die;
