@@ -19,12 +19,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
         "*"
-        // '/weixin/notify',
-        // '/weixi/valid',
-        // '/admin/messag',
-        // '/mass/addo',
-        // '/addo'
     ];
 }

@@ -343,3 +343,13 @@
 <Content><![CDATA[北京-天气]]></Content>
 <MsgId>22279983886433246</MsgId>
 </xml>
+2019-04-26 22:54:57<xml>
+<ToUserName><![CDATA[toUser]]></ToUserName>
+<FromUserName><![CDATA[fromUser]]></FromUserName>
+<CreateTime>123456789</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[LOCATION]]></Event>
+<Latitude>23.137466</Latitude>
+<Longitude>113.352425</Longitude>
+<Precision>119.385040</Precision>
+</xml>

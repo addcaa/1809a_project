@@ -20,7 +20,7 @@ class MassController extends Controller{
         $openid=$_POST['openid'];
         $openid=explode(',',$openid);
         $text=$_POST['text'];
-        // dd($text);
+        // dd($openid);
         $access_token=getaccesstoken();
         $url="https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=$access_token";
         $msg=[
@@ -40,7 +40,28 @@ class MassController extends Controller{
         ]);
         $obj=$response->getBody();
         $arr=json_decode($obj,true);
-        var_dump($arr);die;
+        echo "success";
     }
+    /**添加标签 */
+    public function label(Content $Content){
+        $access_token=getaccesstoken();
+        $url="https://api.weixin.qq.com/cgi-bin/tags/create?access_token=$access_token";
+        $msg=[
+            "tag"=>[
+                "name"=>"广东"   //标签名
+            ],
+        ];
+        // dd($msg);
+        $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
+        // dd($data);
+        $client= new Client();
+        $response = $client->request('POST',$url, [
+            'body' => $data
+        ]);
+        $obj=$response->getBody();
+        $arr=json_decode($obj,true);
+        echo "success";
+    }
+
 }
 ?>

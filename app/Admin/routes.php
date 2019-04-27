@@ -17,5 +17,8 @@ Route::group([
     $router->resource('/messag', MessagController::class);
     $router->get('/mass/list', 'MassController@list');
     $router->post('/mass/addo', 'MassController@addo');
+    $router->get('/mass/label', 'MassController@label');
+    $router->post('/mass/labelad', 'MassController@labelad');
+
 
 });

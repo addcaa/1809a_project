@@ -111,6 +111,7 @@
 
     </table>
     <textarea name="" id="text" cols="90" rows="10"></textarea>
+    <input type="file">
     <input type="button" id="sub"  class="btn btn-primary"value="发送">
 </div>
 </body>
@@ -122,7 +123,7 @@ $(function(){
         var box=$(this).parents('div').find("input[class='box']");
         var openid="";
         box.each(function(index){
-            if(box.prop("checked")==true){
+            if($(this).prop("checked")==true){
                 openid+=$(this).attr("openid")+',';
             }
         })
