@@ -83,60 +83,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>群发</title>
+    <title>获取公众号已创建的标签</title>
 </head>
 <body>
 <div class="box-body table-responsive no-padding content">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th><input type="checkbox"></th>
-                <th>uid</th>
-                <th>openid</th>
-                <th>用户名:</th>
-                <th>头像</th>
+                <th>ID</th>
+                <th>名称</th>
+                <th>人数</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($user as $v)
-            <tr class="openid" openid="{{$v->openid}}">
-                <td><input type="checkbox" class="box" openid="{{$v->openid}}" ></td>
-                <td>{{$v->uid}}</td>
-                <td>{{$v->openid}}</td>
-                <td>{{$v->nickname}}</td>
-                <td><img src="{{$v->headimgurl}}" alt="暂无图片" width="50"></td>
+            @foreach($arr as $v)
+            <tr >
+                <td>{{$v['id']}}</td>
+                <td>{{$v['name']}}</td>
+                <td>{{$v['count']}}</td>
             </tr>
             @endforeach
         </tbody>
-
     </table>
-    <textarea name="" id="text" cols="90" rows="10"></textarea>
-    <input type="file">
-    <input type="button" id="sub"  class="btn btn-primary"value="发送">
 </div>
 </body>
 </html>
-<script src="\js\jquery-3.1.1.min.js"></script>
-<script>
-$(function(){
-    $("#sub").click(function(){
-        var box=$(this).parents('div').find("input[class='box']");
-        var openid="";
-        box.each(function(index){
-            if($(this).prop("checked")==true){
-                openid+=$(this).attr("openid")+',';
-            }
-        })
-        openid=openid.substr(0,openid.length-1);
-        var text=$("#text").val();
-            $.post(
-                'addo',
-                {openid:openid,text:text},
-                function(res){
-                    console.log(res);
-                }
-            )
-    })
-})
-</script>
+<script scr="\js\jquery-3.1.1.min.js"></script>
 

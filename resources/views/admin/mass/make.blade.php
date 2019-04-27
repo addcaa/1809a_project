@@ -96,6 +96,7 @@
                 <th>用户名:</th>
                 <th>头像</th>
             </tr>
+
         </thead>
         <tbody>
             @foreach($user as $v)
@@ -110,15 +111,22 @@
         </tbody>
 
     </table>
-    <textarea name="" id="text" cols="90" rows="10"></textarea>
-    <input type="file">
-    <input type="button" id="sub"  class="btn btn-primary"value="发送">
+    <input type="button" id="sub"  class="btn btn-primary"value="确认">
 </div>
+<select name="" id="_select">
+    <option value="">请选择要选择的标签</option>
+    @foreach($arr as $v)
+        <option value="{{$v['id']}}">{{$v['name']}}</option>
+    @endforeach
+</select>
 </body>
 </html>
-<script src="\js\jquery-3.1.1.min.js"></script>
+<script src="\layui\layui.js"></script>
+<script src="\layui\layui.all.js"></script>
 <script>
 $(function(){
+    layui.use('layer', function(){
+    var layer = layui.layer;
     $("#sub").click(function(){
         var box=$(this).parents('div').find("input[class='box']");
         var openid="";
@@ -128,15 +136,19 @@ $(function(){
             }
         })
         openid=openid.substr(0,openid.length-1);
-        var text=$("#text").val();
-            $.post(
-                'addo',
-                {openid:openid,text:text},
-                function(res){
-                    console.log(res);
-                }
-            )
+        var label=$('#_select').val();
+        // console.log(_select);
+        $.post(
+            '/admin/mass/makeadd',
+            {openid:openid,label:label},
+            function(res){
+                layer.msg(res.font,{icon:res.code});
+
+            }
+        );
     })
 })
+})
+
 </script>
 
