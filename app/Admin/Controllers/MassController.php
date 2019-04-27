@@ -66,7 +66,8 @@ class MassController extends Controller{
     public function thelabel(){
         $access_token=getaccesstoken();
         $url="https://api.weixin.qq.com/cgi-bin/tags/get?access_token=$access_token";
-        dd($url);
+        $response=json_decode(file_get_contents($url),JSON_UNESCAPED_UNICODE);
+        dd($response);
     }
 
 }
