@@ -60,6 +60,7 @@ class MassController extends Controller{
         ]);
         $obj=$response->getBody();
         $arr=json_decode($obj,true);
+        var_dump($arr);die;
         echo "success";
     }
 
