@@ -48,7 +48,7 @@ class MassController extends Controller{
         $url="https://api.weixin.qq.com/cgi-bin/tags/create?access_token=$access_token";
         $msg=[
             "tag"=>[
-                "name"=>"广东"   //标签名
+                "name"=>""   //标签名
             ],
         ];
         // dd($msg);
@@ -60,8 +60,13 @@ class MassController extends Controller{
         ]);
         $obj=$response->getBody();
         $arr=json_decode($obj,true);
-        var_dump($arr);die;
         echo "success";
+    }
+    /** 获取公众号已创建的标签 */
+    public function thelabel(){
+        $access_token=getaccesstoken();
+        $url="https://api.weixin.qq.com/cgi-bin/tags/get?access_token=$access_token";
+        dd($url);
     }
 
 }

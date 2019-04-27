@@ -18,7 +18,7 @@ Route::group([
     $router->get('/mass/list', 'MassController@list');
     $router->post('/mass/addo', 'MassController@addo');
     $router->get('/mass/label', 'MassController@label');
-    $router->post('/mass/labelad', 'MassController@labelad');
+    $router->get('/mass/thelabel', 'MassController@thelabel');
 
 
 });
