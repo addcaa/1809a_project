@@ -33,14 +33,16 @@ class QrcodeController extends Controller
     //通过ticket换取二维码
     public function generate(){
         $access_token=getaccesstoken();
+        // dd($access_token);
         $url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEC8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyZjNFMFlveEZjY0UxUUpfZTFzMU4AAgStRMVcAwSAOgkA";
         // $data=json_decode(file_get_contents($url),true);
         // dd($url);
     }
     /**商品转发 */
-    public function goodsget(){
+    public function goodsget(Request $request){
+        $wxconfig=$request->signPackage;
         $arr=DB::table('goods')->where(['goods_id'=>8])->get()->toArray();
         // dd($arr);
-        return view('qrcode/goodsget',['arr'=>$arr]);
+        return view('qrcode/goodsget',['arr'=>$arr,'wxconfig'=>$wxconfig]);
     }
 }
