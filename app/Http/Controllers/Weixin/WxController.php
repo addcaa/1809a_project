@@ -33,7 +33,7 @@ class WxController extends Controller{
                     'm_sex'=>$u['sex'],
                     'm_text'=> $content
             ];
-            $arr=DB::table('message')->insert($info);
+            // $arr=DB::table('message')->insert($info);
             echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
                 <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
                 <CreateTime>'.time().'</CreateTime>
