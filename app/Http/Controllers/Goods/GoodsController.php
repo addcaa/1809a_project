@@ -97,7 +97,7 @@ class GoodsController extends Controller
         $goods_info=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
         //浏览记录
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
-        dd($goods_info);
+        // dd($goods_info);
         $data=[
             'goods_info'=>$goods_info,
             'url'=>$url
