@@ -52,6 +52,7 @@ Route::get('/Menu/menu','Menu\MenuController@menu');
 Route::get('/qrcode/qrcode','Qrcode\QrcodeController@qrcode');
 Route::get('/qrcode/generate','Qrcode\QrcodeController@generate');
 //一件商品
+Route::get('/qrcode/goodsget','Qrcode\QrcodeController@goodsget');
 
 
 /**

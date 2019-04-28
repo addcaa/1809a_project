@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use function GuzzleHttp\json_decode;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 class QrcodeController extends Controller
 {
     //创建二维码ticket
@@ -38,7 +39,8 @@ class QrcodeController extends Controller
     }
     /**商品转发 */
     public function goodsget(){
-        $arr=DB::table('goods')->where(['goods_id'=>8])->get();
-        dd($arr);
+        $arr=DB::table('goods')->where(['goods_id'=>8])->get()->toArray();
+        // dd($arr);
+        return view('qrcode/goodsget',['arr'=>$arr]);
     }
 }

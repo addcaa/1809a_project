@@ -49,7 +49,6 @@ class WxController extends Controller{
                   </item>
                 </Articles>
               </xml>';
-
         }
         //获取素材
         if($MsgType=="text"){
