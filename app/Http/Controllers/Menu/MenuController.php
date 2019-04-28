@@ -73,6 +73,5 @@ class MenuController extends Controller{
         ]);
         $obj=$r->getBody();
         $arr=json_decode($obj,true);
-        dd($arr);
     }
 }

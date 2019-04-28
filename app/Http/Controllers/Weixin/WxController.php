@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use function GuzzleHttp\json_decode;
+
 class WxController extends Controller{
     public function valid(){
         echo $_GET['echostr'];
@@ -23,17 +25,50 @@ class WxController extends Controller{
         $event = $data->Event;
         $MsgType=$data->MsgType;
         $content=$data->Content;
+        $MediaId=$data->MediaId;
         $u=$this->getUserInfo($openid);
+        $access_token=getaccesstoken();
+
         //获取素材
         if($MsgType=="text"){
-            $text="有什么可以帮助你的吗";
+            if(strpos($content,'+天气')){
+                $city=explode('+',$content)[0];
+                // echo "$city";
+                $url="https://free-api.heweather.net/s6/weather/now?key=HE1904161049361666&location=$city";
+                // echo $url;die;
+                $arr=json_decode(file_get_contents($url),true);
+                // print_r($arr);
+                if($arr['HeWeather6'][0]['status']=="unknown location"){
+                    echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                    <CreateTime>'.time().'</CreateTime>
+                    <MsgType><![CDATA[text]]></MsgType>
+                    <Content>['.'城市名称不正确'.']</Content>
+                    </xml>
+                    ';
+                }else{
+                    $tmp=$arr['HeWeather6'][0]['now']['tmp'];//温度
+                    $cond_txt=$arr['HeWeather6'][0]['now']['cond_txt'];//fen'li
+                    $wind_sc=$arr['HeWeather6'][0]['now']['wind_sc'];//风力
+                    $hum=$arr['HeWeather6'][0]['now']['hum']; // 湿度
+                    $wind_dir=$arr['HeWeather6'][0]['now']['wind_dir'];// 风向
+                    $res="$cond_txt 温度:$tmp 风力:$wind_sc 湿度:$hum 风向:$wind_dir";
+                    echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                    <CreateTime>'.time().'</CreateTime>
+                    <MsgType><![CDATA[text]]></MsgType>
+                    <Content>['.$res.']</Content>
+                    </xml>
+                    ';
+                }
+            }
+            $text="还有什么可以帮助你的吗";
             $info=[
                     'openid'=>$openid,
                     'm_name'=>$u['nickname'],
-                    'm_sex'=>$u['sex'],
                     'm_text'=> $content
             ];
-            // $arr=DB::table('message')->insert($info);
+            $arr=DB::table('userrecord')->insert($info);
             echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
                 <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
                 <CreateTime>'.time().'</CreateTime>
@@ -41,6 +76,15 @@ class WxController extends Controller{
                <Content>![CDATA['.$text.']</Content>
                 </xml>
                 ';
+        }
+        //获取图片
+        if($MsgType=="image"){
+            $access_token=getaccesstoken();
+            $url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=$access_token&media_id=$MediaId";
+            $imgtime=date('Y-m-d H:i:s');
+            $image=file_get_contents($url);
+            // dd($image);
+            file_put_contents("/wwwroot/project/public/img/$imgtime.jpg",$image,FILE_APPEND);
         }
         //判断扫码
         if($event=='subscribe'){
