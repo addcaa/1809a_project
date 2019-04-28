@@ -35,7 +35,7 @@
         signature: "{{$wxconfig['signature']}}",
         jsApiList: [
         'onMenuShareTimeline',
-        'onMenuShareAppMessage',
+        'onMenuShareAppMessage',//获取“分享给朋友”按钮点击状态及自定义分享内容接口
         ]
         });
         wx.ready(function () {

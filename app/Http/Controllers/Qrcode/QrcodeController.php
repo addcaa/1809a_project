@@ -41,6 +41,7 @@ class QrcodeController extends Controller
     /**商品转发 */
     public function goodsget(Request $request){
         $wxconfig=$request->signPackage;
+        // dd($wxconfig);
         $arr=DB::table('goods')->where(['goods_id'=>8])->get()->toArray();
         // dd($arr);
         return view('qrcode/goodsget',['arr'=>$arr,'wxconfig'=>$wxconfig]);
