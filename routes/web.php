@@ -48,6 +48,10 @@ Route::get('/crontab/delorders','Crontab\CrontabController@delorders');
 
 //菜单
 Route::get('/Menu/menu','Menu\MenuController@menu');
+//成功二维码
+Route::get('/qrcode/qrcode','Qrcode\QrcodeController@qrcode');
+Route::get('/qrcode/generate','Qrcode\QrcodeController@generate');
+
 
 /**
  * 后台

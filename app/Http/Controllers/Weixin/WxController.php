@@ -26,9 +26,22 @@ class WxController extends Controller{
         $MsgType=$data->MsgType;
         $content=$data->Content;
         $MediaId=$data->MediaId;
+        $EventKey=$data->EventKey;
+        // echo $EventKey;
         $u=$this->getUserInfo($openid);
+        // dd($u);
         $access_token=getaccesstoken();
+        if($event=="SCAN"){
+            // echo "11";
+            $info=[
+                'openid'=>$openid,
+                'nickname'=>$u['nickname'],
+                'eventkey'=>$EventKey
 
+            ];
+            // dd($info);
+            $arr=DB::table('wx_user_code')->insert($info);
+        }
         //获取素材
         if($MsgType=="text"){
             if(strpos($content,'+天气')){
@@ -122,6 +135,7 @@ class WxController extends Controller{
             $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>2]);
             // echo $res;die;
         }
+
     }
     /**用户信息 */
     public function getUserInfo($openid){
@@ -133,3 +147,4 @@ class WxController extends Controller{
         return $u;
     }
 }
+
