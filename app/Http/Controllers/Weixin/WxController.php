@@ -123,13 +123,13 @@ class WxController extends Controller{
             $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
             if($user_info){
                 $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>1]);
-                echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
-                <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-                <CreateTime>'.time().'</CreateTime>
-                <MsgType><![CDATA[text]]></MsgType>
-               <Content>![CDATA['.'欢迎回来'.$user_info->nickname.']]</Content>
-                </xml>
-                ';
+            //     echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+            //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+            //     <CreateTime>'.time().'</CreateTime>
+            //     <MsgType><![CDATA[text]]></MsgType>
+            //    <Content>![CDATA['.'欢迎回来'.$user_info->nickname.']]</Content>
+            //     </xml>
+            //     ';
                 $name="最新商品";
                 $desc="aaa";
                 $url="http://www.baidu.com";
