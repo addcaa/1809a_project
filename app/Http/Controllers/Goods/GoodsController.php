@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redis;
+use GuzzleHttp\Client;
 class GoodsController extends Controller
 {
     public function index(){
@@ -62,6 +63,29 @@ class GoodsController extends Controller
 
     }
     public function list($goods_id){
+        $access_token=getaccesstoken();
+        $url="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$access_token";
+        $msg=[
+            "expire_seconds"=>604800,
+            "action_name"=>"QR_SCENE",
+            "action_info"=>[
+                "scene"=>["scene_id"=>$goods_id],
+            ],
+        ];
+        $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
+        // dd($data);
+        $client = new Client();
+        $client = new Client();
+        $r = $client->request('POST',$url, [
+            'body' => $data
+        ]);
+        $obj=$r->getBody();
+        $arr=json_decode($obj,true);
+        // dd($arr);
+        $ticket=$arr['ticket'];
+        //转换二维码
+        $url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
+        // dd($url);
         $id='goods_id'.$goods_id;
         $redis_incr=Redis::incr($id);
         // dd($redis_incr);
@@ -85,7 +109,8 @@ class GoodsController extends Controller
         $data=[
             'goods_info'=>$goods_info,
             'redis_incr'=>$redis_incr,
-            'arr_info'=>$arr_info
+            'arr_info'=>$arr_info,
+            'url'=>$url
         ];
         return view('goods/list',$data);
     }

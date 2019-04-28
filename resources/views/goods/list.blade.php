@@ -47,5 +47,9 @@
         </tr>
         @endforeach
     </table>
+    <a href="{{$url}}">扫描查看</a>
 </body>
 </html>
+<script src="\js\qrcode.min.js"></script>
+
+
