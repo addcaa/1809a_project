@@ -40,25 +40,26 @@ class WxController extends Controller{
 
             ];
             // dd($info);
-            $name="哈喽";
-            $text="llllllllllll";
-            $piurl="https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg";
             // $arr=DB::table('wx_user_code')->insert($info);
+            $name="图文";
+            $desc="我也不知道";
+            $url="http://www.baidu.com";
             echo '<xml>
-                <ToUserName><![CDATA['.$wx_id.']]></ToUserName>
-                <FromUserName><![CDATA['.$openid.']]></FromUserName>
-                <CreateTime>12345678</CreateTime>
-                <MsgType><![CDATA['.time().']]></MsgType>
+                <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                <CreateTime>'.time().'</CreateTime>
+                <MsgType><![CDATA[news]]></MsgType>
                 <ArticleCount>1</ArticleCount>
                 <Articles>
-                <item>
+                  <item>
                     <Title><![CDATA['.$name.']]></Title>
-                    <Description><![CDATA['.$text.']]></Description>
-                    <PicUrl><![CDATA['.$piurl.']]></PicUrl>
-                    <Url><![CDATA[url]]></Url>
-                </item>
+                    <Description><![CDATA['.$desc.']]></Description>
+                    <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                    <Url><![CDATA['.$url.']]></Url>
+                  </item>
                 </Articles>
-            </xml>';
+              </xml>';
+
         }
         //获取素材
         if($MsgType=="text"){
