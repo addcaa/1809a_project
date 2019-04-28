@@ -85,8 +85,8 @@ class GoodsController extends Controller
         //转换二维码
         $url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
         // dd($url);
-        $id='goods_id'.$goods_id;
-        $redis_incr=Redis::incr($id);
+        // $id='goods_id'.$goods_id;
+        // $redis_incr=Redis::incr($id);
         // dd($redis_incr);
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->value('goods_num');
         $where=[
@@ -95,21 +95,11 @@ class GoodsController extends Controller
         $num=DB::table('goods')->where(['goods_id'=>$goods_id])->update($where);
         // dd($num);
         $goods_info=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
-
         //浏览记录
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->first();
-        $key="jilu";
-        Redis::Zadd($key,$redis_incr,$goods_id);
-        $res=Redis::zRevRange($key,0,100,true);
-        $arr_info=[];
-        foreach($res as $k=>$v){
-            $arr_info[]=DB::table('goods')->where(['goods_id'=>$k])->first();
-        }
-        dd($arr_info);
+        dd($goods_info);
         $data=[
             'goods_info'=>$goods_info,
-            'redis_incr'=>$redis_incr,
-            'arr_info'=>$arr_info,
             'url'=>$url
         ];
         return view('goods/list',$data);
