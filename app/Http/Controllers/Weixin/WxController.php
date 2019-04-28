@@ -33,7 +33,7 @@ class WxController extends Controller{
         if($event=="SCAN"){
             $name="欢迎回来";
             $desc="我也不知道";
-            $url="http://www.baidu.com";
+            $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
             echo '<xml>
                 <ToUserName><![CDATA['.$openid.']]></ToUserName>
                 <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
@@ -130,7 +130,7 @@ class WxController extends Controller{
             //     ';
                 $name="最新商品";
                 $desc="aaa";
-                $url="http://www.baidu.com";
+                $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
                 echo '<xml>
                     <ToUserName><![CDATA['.$openid.']]></ToUserName>
                     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
