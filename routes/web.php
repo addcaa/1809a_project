@@ -51,6 +51,7 @@ Route::get('/Menu/menu','Menu\MenuController@menu');
 //成功二维码
 Route::get('/qrcode/qrcode','Qrcode\QrcodeController@qrcode');
 Route::get('/qrcode/generate','Qrcode\QrcodeController@generate');
+//一件商品
 
 
 /**

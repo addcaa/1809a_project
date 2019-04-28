@@ -41,7 +41,7 @@ class WxController extends Controller{
             ];
             // dd($info);
             // $arr=DB::table('wx_user_code')->insert($info);
-            $name="图文";
+            $name="欢迎回来";
             $desc="我也不知道";
             $url="http://www.baidu.com";
             echo '<xml>
@@ -130,6 +130,24 @@ class WxController extends Controller{
                <Content>![CDATA['.'欢迎回来'.$user_info->nickname.']]</Content>
                 </xml>
                 ';
+                $name="最新商品";
+                $desc="aaa";
+                $url="http://www.baidu.com";
+                echo '<xml>
+                    <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                    <CreateTime>'.time().'</CreateTime>
+                    <MsgType><![CDATA[news]]></MsgType>
+                    <ArticleCount>1</ArticleCount>
+                    <Articles>
+                      <item>
+                        <Title><![CDATA['.$name.']]></Title>
+                        <Description><![CDATA['.$desc.']]></Description>
+                        <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                        <Url><![CDATA['.$url.']]></Url>
+                      </item>
+                    </Articles>
+                  </xml>';
             }else{
                 $u=$this->getUserInfo($openid);
                 $info=[

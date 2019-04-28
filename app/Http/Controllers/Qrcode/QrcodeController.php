@@ -36,4 +36,9 @@ class QrcodeController extends Controller
         // $data=json_decode(file_get_contents($url),true);
         // dd($url);
     }
+    /**商品转发 */
+    public function goodsget(){
+        $arr=DB::table('goods')->where(['goods_id'=>8])->get();
+        dd($arr);
+    }
 }
