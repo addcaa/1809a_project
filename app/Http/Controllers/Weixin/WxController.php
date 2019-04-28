@@ -170,7 +170,6 @@ class WxController extends Controller{
         //     $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>2]);
         //     // echo $res;die;
         }
-
     }
     /**用户信息 */
     public function getUserInfo($openid){
