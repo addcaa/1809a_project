@@ -31,15 +31,6 @@ class WxController extends Controller{
         // dd($u);
         $access_token=getaccesstoken();
         if($event=="SCAN"){
-            // echo "11";
-            $info=[
-                'openid'=>$openid,
-                'nickname'=>$u['nickname'],
-                'eventkey'=>$EventKey
-
-            ];
-            // dd($info);
-            $arr=DB::table('wx_user_code')->insert($info);
             $name="欢迎回来";
             $desc="我也不知道";
             $url="http://www.baidu.com";
@@ -121,15 +112,16 @@ class WxController extends Controller{
         if($event=='subscribe'){
             // $eventkey=substr($EventKey,0,strpos($EventKey, '_'));
             $eventkey= substr($EventKey,strpos($EventKey,'_')+1);
+            // dd($eventkey);
             $info=[
                 'openid'=>$openid,
                 'nickname'=>$u['nickname'],
                 'eventkey'=>$eventkey
             ];
             $arr=DB::table('wx_user_code')->insert($info);
-            $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
-            if($user_info){
-                $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>1]);
+            // $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
+            // if($user_info){
+                // $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>1]);
             //     echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
             //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
             //     <CreateTime>'.time().'</CreateTime>
@@ -155,29 +147,29 @@ class WxController extends Controller{
                       </item>
                     </Articles>
                   </xml>';
-            }else{
-                $u=$this->getUserInfo($openid);
-                $info=[
-                        'openid'=>$openid,
-                        'nickname'=>$u['nickname'],
-                        'sex'=>$u['sex'],
-                        'headimgurl'=>$u['headimgurl'],
-                        'subscribe_time'=>$u['subscribe_time'],
-                ];
-                // dd($info);
-                $arr=DB::table('userwx')->insert($info);
-                echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
-                <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-                <CreateTime>'.time().'</CreateTime>
-                <MsgType><![CDATA[text]]></MsgType>
-               <Content>![CDATA['.'欢迎关注'.$u['nickname'].']]</Content>
-                </xml>
-                ';
-            }
-        }else if($event=="unsubscribe"){
-            // echo "取关";
-            $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>2]);
-            // echo $res;die;
+        //     }else{
+        //         $u=$this->getUserInfo($openid);
+        //         $info=[
+        //                 'openid'=>$openid,
+        //                 'nickname'=>$u['nickname'],
+        //                 'sex'=>$u['sex'],
+        //                 'headimgurl'=>$u['headimgurl'],
+        //                 'subscribe_time'=>$u['subscribe_time'],
+        //         ];
+        //         // dd($info);
+        //         $arr=DB::table('userwx')->insert($info);
+        //         echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+        //         <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+        //         <CreateTime>'.time().'</CreateTime>
+        //         <MsgType><![CDATA[text]]></MsgType>
+        //        <Content>![CDATA['.'欢迎关注'.$u['nickname'].']]</Content>
+        //         </xml>
+        //         ';
+        //     }
+        // }else if($event=="unsubscribe"){
+        //     // echo "取关";
+        //     $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>2]);
+        //     // echo $res;die;
         }
 
     }
