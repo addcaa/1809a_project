@@ -16,7 +16,7 @@ class QrcodeController extends Controller
             "expire_seconds"=>604800,
             "action_name"=>"QR_SCENE",
             "action_info"=>[
-                "scene"=>["scene_id"=>"123"],
+                "scene"=>["scene_id"=>"777"],
             ],
         ];
         $data=json_encode($msg,JSON_UNESCAPED_UNICODE);

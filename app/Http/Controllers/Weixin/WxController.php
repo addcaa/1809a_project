@@ -27,7 +27,6 @@ class WxController extends Controller{
         $content=$data->Content;
         $MediaId=$data->MediaId;
         $EventKey=$data->EventKey;
-        // echo $EventKey;
         $u=$this->getUserInfo($openid);
         // dd($u);
         $access_token=getaccesstoken();
@@ -40,7 +39,7 @@ class WxController extends Controller{
 
             ];
             // dd($info);
-            // $arr=DB::table('wx_user_code')->insert($info);
+            $arr=DB::table('wx_user_code')->insert($info);
             $name="欢迎回来";
             $desc="我也不知道";
             $url="http://www.baidu.com";
@@ -120,6 +119,14 @@ class WxController extends Controller{
         }
         //判断扫码
         if($event=='subscribe'){
+            $eventkey=substr($EventKey,-3);
+            $info=[
+                'openid'=>$openid,
+                'nickname'=>$u['nickname'],
+                'eventkey'=>$EventKey
+
+            ];
+            $arr=DB::table('wx_user_code')->insert($info);
             $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
             if($user_info){
                 $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>1]);
