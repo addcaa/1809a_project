@@ -31,10 +31,9 @@ class WxController extends Controller{
         // dd($u);
         $access_token=getaccesstoken();
         if($event=="SCAN"){
-            $goods_info=DB::table("goods")->where(['goods_id'=>$EventKey])->first();
-            $goods_name=$goods_info->goods_name;
-            $goods_core=$goods_info->goods_core;
-            $url='http://1809cuifangfang.comcto.com/goods/list/'.$EventKey;
+            $name="欢迎回来";
+            $desc="我也不知道";
+            $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
             echo '<xml>
                 <ToUserName><![CDATA['.$openid.']]></ToUserName>
                 <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
@@ -43,8 +42,8 @@ class WxController extends Controller{
                 <ArticleCount>1</ArticleCount>
                 <Articles>
                   <item>
-                    <Title><![CDATA['.$goods_name.']]></Title>
-                    <Description><![CDATA['.$goods_core.']]></Description>
+                    <Title><![CDATA['.$name.']]></Title>
+                    <Description><![CDATA['.$desc.']]></Description>
                     <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
                     <Url><![CDATA['.$url.']]></Url>
                   </item>

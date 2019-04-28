@@ -63,31 +63,32 @@ class GoodsController extends Controller
 
     }
     public function list($goods_id){
-        $access_token=getaccesstoken();
-        $url="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$access_token";
-        $msg=[
-            "expire_seconds"=>604800,
-            "action_name"=>"QR_SCENE",
-            "action_info"=>[
-                "scene"=>["scene_id"=>$goods_id],
-            ],
-        ];
-        $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
-        // dd($data);
-        $client = new Client();
-        $r = $client->request('POST',$url, [
-            'body' => $data
-        ]);
-        $obj=$r->getBody();
-        $arr=json_decode($obj,true);
-        // dd($arr);
-        $ticket=$arr['ticket'];
-        //转换二维码
-        $url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
+        // $access_token=getaccesstoken();
+        // $url="https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=$access_token";
+        // $msg=[
+        //     "expire_seconds"=>604800,
+        //     "action_name"=>"QR_SCENE",
+        //     "action_info"=>[
+        //         "scene"=>["scene_id"=>$goods_id],
+        //     ],
+        // ];
+        // $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
+        // // dd($data);
+        // $client = new Client();
+        // $r = $client->request('POST',$url, [
+        //     'body' => $data
+        // ]);
+        // $obj=$r->getBody();
+        // $arr=json_decode($obj,true);
+        // // dd($arr);
+        // $ticket=$arr['ticket'];
+        // //转换二维码
+        // $url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
         // dd($url);
         // $id='goods_id'.$goods_id;
         // $redis_incr=Redis::incr($id);
         // dd($redis_incr);
+        $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id;";
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->value('goods_num');
         $where=[
             'goods_num'=>$goods_num+1

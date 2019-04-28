@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<script src="/js/qrcode.min.js"></script>
+<script src="/qrcode.min.js"></script>
+
 <body>
     <table border=1>
         <tr>
@@ -30,9 +33,17 @@
         </tr>
         <tr>><td> <a href="/goods/cart/{{$goods_info->goods_id}}">加入购物车</a></td></tr>
     </table>
-    <a href="{{$url}}">扫描查看</a>
+   {{$url}}
+
+   <div id="qrcode"></div>
 </body>
 </html>
-<script src="\js\qrcode.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+    <script src="/js/qrcode.min.js"></script>
+    <script src="\js\jquery-3.1.1.min.js"></script>
+<script>
+    new QRCode(document.getElementById("qrcode"), "{{$url}}");
+</script>
+
 
 
