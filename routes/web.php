@@ -46,6 +46,8 @@ Route::get('/jssdk/getu','Jssdk\JssdkController@getu');
 Route::get('/crontab/delorders','Crontab\CrontabController@delorders');
 
 
+//菜单
+Route::get('/Menu/menu','Menu\MenuController@menu');
 
 /**
  * 后台
