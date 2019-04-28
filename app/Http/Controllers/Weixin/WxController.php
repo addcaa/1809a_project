@@ -40,7 +40,25 @@ class WxController extends Controller{
 
             ];
             // dd($info);
-            $arr=DB::table('wx_user_code')->insert($info);
+            $name="哈喽";
+            $text="llllllllllll";
+            $piurl="https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg";
+            // $arr=DB::table('wx_user_code')->insert($info);
+            echo '<xml>
+                <ToUserName><![CDATA['.$wx_id.']]></ToUserName>
+                <FromUserName><![CDATA['.$openid.']]></FromUserName>
+                <CreateTime>12345678</CreateTime>
+                <MsgType><![CDATA['.time().']]></MsgType>
+                <ArticleCount>1</ArticleCount>
+                <Articles>
+                <item>
+                    <Title><![CDATA['.$name.']]></Title>
+                    <Description><![CDATA['.$text.']]></Description>
+                    <PicUrl><![CDATA['.$piurl.']]></PicUrl>
+                    <Url><![CDATA[url]]></Url>
+                </item>
+                </Articles>
+            </xml>';
         }
         //获取素材
         if($MsgType=="text"){
