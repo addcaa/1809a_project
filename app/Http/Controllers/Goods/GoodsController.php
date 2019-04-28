@@ -75,7 +75,6 @@ class GoodsController extends Controller
         $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
         // dd($data);
         $client = new Client();
-        $client = new Client();
         $r = $client->request('POST',$url, [
             'body' => $data
         ]);
@@ -106,6 +105,7 @@ class GoodsController extends Controller
         foreach($res as $k=>$v){
             $arr_info[]=DB::table('goods')->where(['goods_id'=>$k])->first();
         }
+        dd($arr_info);
         $data=[
             'goods_info'=>$goods_info,
             'redis_incr'=>$redis_incr,
