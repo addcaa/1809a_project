@@ -119,12 +119,12 @@ class WxController extends Controller{
         }
         //判断扫码
         if($event=='subscribe'){
-            $eventkey=substr($EventKey,-3);
+            // $eventkey=substr($EventKey,0,strpos($EventKey, '_'));
+            $eventkey= substr($EventKey,strpos($EventKey,'_')+1);
             $info=[
                 'openid'=>$openid,
                 'nickname'=>$u['nickname'],
-                'eventkey'=>$EventKey
-
+                'eventkey'=>$eventkey
             ];
             $arr=DB::table('wx_user_code')->insert($info);
             $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
