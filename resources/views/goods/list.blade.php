@@ -54,20 +54,20 @@
         nonceStr: "{{$wxconfig['nonceStr']}}", // 必填，生成签名的随机串
         signature: "{{$wxconfig['signature']}}",// 必填，签名
         jsApiList: [
+            'onMenuShareAppMessage',
             'updateAppMessageShareData'
         ] // 必填，需要使用的JS接口列表
     });
     wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
-        // wx.onMenuShareAppMessage({
-        //     title: '电视', // 分享标题
-        //     desc: '对对对', // 分享描述
-        //     link: document.URL, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        //     imgUrl: 'http://img.zcool.cn/community/01bbc7597aed60a8012193a3463d04.jpg', // 分享图标
-        //     success: function () {
-        //     // 用户点击了分享后执行的回调函数
-        //     }
-        // });
-        //
+        wx.onMenuShareAppMessage({
+            title: '电视', // 分享标题
+            desc: '哈哈', // 分享描述
+            link: document.URL, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://img.zcool.cn/community/01bbc7597aed60a8012193a3463d04.jpg', // 分享图标
+            success: function () {
+            // 用户点击了分享后执行的回调函数
+            }
+        });
         wx.updateAppMessageShareData({
             title: '电视', // 分享标题
             desc: '对对对', // 分享描述
