@@ -54,13 +54,11 @@ class MenuController extends Controller{
         $openid=$user['openid'];
         $name=$user['nickname'];
         $time=time();
-        $info=[
-            'time'=>time()
-        ];
-        $arr=json_encode($info,JSON_UNESCAPED_UNICODE);
+        $arr=date('Y-d-m H:i:s');
+        // $arr=json_encode($info,JSON_UNESCAPED_UNICODE);
         $key="sign";
-        Redis::zadd($key,$arr);
-        $ser=Redis::ZREVRANGE($key,0,1000,true);
+        Redis::lpush($key,$arr);
+        $ser=Redis::lrange($key,0,-1);
         // $ser=json_decode(Redis::get($key),true);
         // dd($ser);
         var_dump($ser);die;
