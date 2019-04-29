@@ -34,6 +34,15 @@ class MenuController extends Controller{
     }
     /**授权页面 */
     public function accredit(){
-        echo "111";
+        dd($_GET['code']);
+        $content=file_get_contents("php://input");
+        $data=simplexml_load_string($content);
+        // echo $data;die;
+        $openid=$data->FromUserName;
+        // echo $openid;die;
+        $access_token='https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf6459da873fa2ef5&secret=84c923c15aa4e05ca40d3c59a135630f&code=CODE&grant_type=authorization_code';
+        $url="https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+        $r=json_decode(file_get_contents($url),true);
+        dd($r);
     }
 }
