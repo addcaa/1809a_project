@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use function GuzzleHttp\json_decode;
-
+use App\Model\GoodsModel;
 class WxController extends Controller{
     public function valid(){
         echo $_GET['echostr'];
@@ -94,11 +94,12 @@ class WxController extends Controller{
             //模糊查询商品
             $res=DB::table("goods")->where('goods_name', 'like', "%$content%")->first();
             if(empty($res)){
-                $goods_name="php从入门到精通第4版 ";
-                $goods_img="http://www.uploads.com/uploads/$res->goods_img";
-                dd($goods_img);
-                $goods_id=11;
-                $goods_core="没有找到你要搜索的商品，为你推荐最火";
+                $goods_info=GoodsModel::inRandomOrder()->first();
+                $goods_name=$goods_info->goods_name;
+                $goods_img=$goods_info->goods_img;
+                // dd($goods_img);
+                $goods_id=$goods_info->goods_id;
+                $goods_core=$goods_info->goods_core;
                 $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id";
                 echo '<xml>
                     <ToUserName><![CDATA['.$openid.']]></ToUserName>
@@ -110,7 +111,7 @@ class WxController extends Controller{
                     <item>
                         <Title><![CDATA['.$goods_name.']]></Title>
                         <Description><![CDATA['.$goods_core.']]></Description>
-                        <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                        <PicUrl><![CDATA['.$goods_img.']]></PicUrl>
                         <Url><![CDATA['.$url.']]></Url>
                     </item>
                     </Articles>
@@ -118,6 +119,7 @@ class WxController extends Controller{
             }else{
                 $goods_name=$res->goods_name;
                 $goods_img=$res->goods_img;
+                // dd($goods_img);
                 $goods_id=$res->goods_id;
                 $goods_core=$res->goods_core;
                 $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id";
