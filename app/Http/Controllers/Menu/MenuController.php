@@ -61,7 +61,8 @@ class MenuController extends Controller{
         $key="sign";
         Redis::zadd($key,$arr);
         $ser=Redis::ZREVRANGE($key,0,1000,true);
-        $ser=json_decode(Redis::get($key),true);
-        dd($ser);
+        // $ser=json_decode(Redis::get($key),true);
+        // dd($ser);
+        var_dump($ser);die;
     }
 }
