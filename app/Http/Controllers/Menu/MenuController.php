@@ -53,7 +53,7 @@ class MenuController extends Controller{
         $user=json_decode(file_get_contents($access_info),true);
         $openid=$user['openid'];
         $name=$user['nickname'];
-        $key="sign";
+        $key='sign'.$openid;
         Redis::lpush($key,date('Y-d-m H:i:s'));
         $ser=Redis::lRange($key,0,-1);
         echo "11";
