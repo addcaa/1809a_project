@@ -57,9 +57,10 @@ class MenuController extends Controller{
             'name'=>$name,
             'time'=>time()
         ];
-        $arr=json_encode($info);
+        $arr=json_encode($info,JSON_UNESCAPED_UNICODE);
         $key="sign";
-        Redis::set($key,$arr);
-        dd(Redis::get($key));
+        Redis::lpush($key,$arr);
+        $ser=json_decode(Redis::get($key),true);
+        dd($ser);
     }
 }
