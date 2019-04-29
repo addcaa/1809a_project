@@ -56,8 +56,6 @@ class MenuController extends Controller{
         $key='sign'.$openid;
         Redis::lpush($key,date('Y-d-m H:i:s'));
         $ser=Redis::lRange($key,0,-1);
-        echo "11";
-
-        print_r($ser);die;
+        print_r($ser);"</br>";die;
     }
 }
