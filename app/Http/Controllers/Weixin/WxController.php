@@ -139,7 +139,6 @@ class WxController extends Controller{
                     </Articles>
                 </xml>';
             }
-
             // echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
             //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
             //     <CreateTime>'.time().'</CreateTime>

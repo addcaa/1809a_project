@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
+
 class GoodsController extends Controller
 {
     public function index(){
@@ -88,6 +90,27 @@ class GoodsController extends Controller
         // $id='goods_id'.$goods_id;
         // $redis_incr=Redis::incr($id);
         // dd($redis_incr);
+
+
+
+        //转发
+        $jsapi_ticket=jsapi_ticket();
+        $nonceStr=Str::random(10);
+        $timestamp=time();
+        $url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        // $res="jsapi_ticket$jsapi_ticket&noncestr$nonceStr&timestamp$timestamp&url$url";
+        // //签名
+        // $signature=sha1($res);
+        $string1 = "jsapi_ticket=$jsapi_ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
+        $sign= sha1($string1);
+        // dd($sign);
+        $wxconfig=[
+            'appId'=>env('WX_APP_ID'),    // 必填，公众号的唯一标识
+            'timestamp'=>$timestamp,     // 必填，生成签名的时间戳
+            'nonceStr'=>$nonceStr,       // 必填，生成签名的随机串
+            'signature'=>$sign     // 必填，签名
+        ];
+        // dd($wxconfig);
         $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id;";
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->value('goods_num');
         $where=[
@@ -101,7 +124,8 @@ class GoodsController extends Controller
         // dd($goods_info);
         $data=[
             'goods_info'=>$goods_info,
-            'url'=>$url
+            'url'=>$url,
+            'wxconfig'=>$wxconfig,
         ];
         return view('goods/list',$data);
     }

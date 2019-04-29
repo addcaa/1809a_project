@@ -54,6 +54,9 @@ Route::get('/qrcode/generate','Qrcode\QrcodeController@generate');
 //一件商品
 Route::get('/qrcode/goodsget','Qrcode\QrcodeController@goodsget');
 
+/**授权 */
+Route::get('/Menu/accredit','Menu\MenuController@accredit');
+
 
 /**
  * 后台

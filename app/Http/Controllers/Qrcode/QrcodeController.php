@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Qrcode;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use function GuzzleHttp\json_decode;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
 class QrcodeController extends Controller
 {
     //创建二维码ticket

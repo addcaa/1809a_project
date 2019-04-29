@@ -12,58 +12,15 @@ class MenuController extends Controller{
     public function menu(){
         $access_token=getaccesstoken();
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+        $surl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/Menu/accredit&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         $msg=[
             "button"=>[
-                [
-                    "type"=>"click",
-                    "name"=>"今日歌曲",
-                    "key"=>"V1001_TODAY_MUSIC"
+               [
+                    "type"=>"view",
+                    "name"=>"最新福利",
+                    "url"=>$surl
                 ],
-                [
-                    "name"=>"菜单",
-                    "sub_button"=>[
-                    [
-                        "type"=>"view",
-                        "name"=>"搜索",
-                        "url"=>"http://www.soso.com/"
-                    ],
-                    [
-                        "type"=>"miniprogram",
-                        "name"=>"wxa",
-                        "url"=>"http://mp.weixin.qq.com",
-                        "appid"=>"wx286b93c14bbf93aa",
-                        "pagepath"=>"pages/lunar/index"
-                    ],
-                    [
-                        "type"=>"click",
-                        "name"=>"赞一下我们",
-                        "key"=>"V1001_GOOD"
-                    ]]
-                ],
-                [
-                    "name"=> "发图",
-                    "sub_button"=> [
-                        [
-                            "type"=> "pic_sysphoto",
-                            "name"=> "系统拍照发图",
-                            "key"=> "rselfmenu_1_0",
-                            "sub_button"=> [ ]
-                        ],
-                        [
-                            "type"=> "pic_photo_or_album",
-                            "name"=> "拍照或者相册发图",
-                            "key"=> "rselfmenu_1_1",
-                            "sub_button"=> [ ]
-                        ],
-                        [
-                            "type"=> "pic_weixin",
-                            "name"=> "微信相册发图",
-                            "key"=> "rselfmenu_1_2",
-                            "sub_button"=> [ ]
-                        ]
-                    ],
-                ]
-            ]
+            ],
         ];
         $data=json_encode($msg,JSON_UNESCAPED_UNICODE);
         // dd($data);
@@ -73,5 +30,10 @@ class MenuController extends Controller{
         ]);
         $obj=$r->getBody();
         $arr=json_decode($obj,true);
+        dd($arr);
+    }
+    /**授权页面 */
+    public function accredit(){
+        echo "111";
     }
 }
