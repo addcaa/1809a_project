@@ -83,20 +83,43 @@ class WxController extends Controller{
                     ';
                 }
             }
+
             $text="还有什么可以帮助你的吗";
             $info=[
                     'openid'=>$openid,
                     'm_name'=>$u['nickname'],
                     'm_text'=> $content
             ];
+            $res=DB::table("goods")->where('goods_name', 'like', "%$content%")->first();
+            // var_dump($res);
+            $goods_name=$res->goods_name;
+            $goods_img=$res->goods_img;
+            $goods_id=$res->goods_id;
+            $goods_core=$res->goods_core;
+            $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id";
             $arr=DB::table('userrecord')->insert($info);
-            echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+            echo '<xml>
+                <ToUserName><![CDATA['.$openid.']]></ToUserName>
                 <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
                 <CreateTime>'.time().'</CreateTime>
-                <MsgType><![CDATA[text]]></MsgType>
-               <Content>![CDATA['.$text.']</Content>
-                </xml>
-                ';
+                <MsgType><![CDATA[news]]></MsgType>
+                <ArticleCount>1</ArticleCount>
+                <Articles>
+                <item>
+                    <Title><![CDATA['.$goods_name.']]></Title>
+                    <Description><![CDATA['.$goods_core.']]></Description>
+                    <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                    <Url><![CDATA['.$url.']]></Url>
+                </item>
+                </Articles>
+            </xml>';
+            // echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+            //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+            //     <CreateTime>'.time().'</CreateTime>
+            //     <MsgType><![CDATA[text]]></MsgType>
+            //    <Content>![CDATA['.$text.']</Content>
+            //     </xml>
+            //     ';
         }
         //获取图片
         if($MsgType=="image"){
