@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use function GuzzleHttp\json_decode;
 use function GuzzleHttp\json_encode;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Redis;
 class MenuController extends Controller{
     //**创建自定义菜单 */
     public function menu(){
@@ -14,7 +15,7 @@ class MenuController extends Controller{
         // dd($access_token);
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
         $surl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/jssdk/getu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        $sign="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf0e81c3bee622d60&redirect_uri=http://1809cuifangfang.comcto.com/menu/sign&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        $sign="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/menu/sign&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         $msg=[
             "button"=>[
                [
@@ -41,6 +42,24 @@ class MenuController extends Controller{
     }
     /**签到功能 */
     public function sign(){
-        dd($_GET['code']);
+        $code=$_GET['code'];
+        //通过code换取网页授权access_token
+        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf6459da873fa2ef5&secret=84c923c15aa4e05ca40d3c59a135630f&code=$code&grant_type=authorization_code";
+        $pesponse=json_decode(file_get_contents($url),true);
+        $access_token=$pesponse['access_token'];
+        $openid=$pesponse['openid'];
+        //拉取用户信息(需scope为 snsapi_userinfo)
+        $access_info="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
+        $user=json_decode(file_get_contents($access_info),true);
+        $openid=$user['openid'];
+        $name=$user['nickname'];
+        $info=[
+            'name'=>$name,
+            'time'=>time()
+        ];
+        $arr=json_encode($info);
+        $key="sign";
+        Redis::set($key,$arr);
+        dd(Redis::get($key));
     }
 }
