@@ -62,22 +62,25 @@ class JssdkController extends Controller{
         $user=json_decode(file_get_contents($access_info),true);
         $openid=$user['openid'];
         $name=$user['nickname'];
-        $user_info=WxUserModel::where(['openid'=>$openid])->first();
-        if($user_info){
-            echo "欢迎回来$name";die;
-        }else{
-            $info=[
-                'openid'=>$user['openid'],
-               'name'=>$user['nickname'],
-               'headimgurl'=>$user['headimgurl']
-            ];
-            $wx_user=WxUserModel::insert($info);
-            if($wx_user){
-                echo "欢迎$name";die;
-            }else{
-                echo "失败";die;
-            }
-        }
+        header("Refresh:3;url='http://1809cuifangfang.comcto.com/goods/list/2'");
+        echo "欢迎回来$name,等待跳转~~~";die;
+
+        // $user_info=WxUserModel::where(['openid'=>$openid])->first();
+        // if($user_info){
+        //     echo "欢迎回来$name";die;
+        // }else{
+        //     $info=[
+        //         'openid'=>$user['openid'],
+        //        'name'=>$user['nickname'],
+        //        'headimgurl'=>$user['headimgurl']
+        //     ];
+        //     $wx_user=WxUserModel::insert($info);
+        //     if($wx_user){
+        //         echo "欢迎$name";die;
+        //     }else{
+        //         echo "失败";die;
+        //     }
+        // }
 
     }
 }

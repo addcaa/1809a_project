@@ -55,7 +55,7 @@ Route::get('/qrcode/generate','Qrcode\QrcodeController@generate');
 Route::get('/qrcode/goodsget','Qrcode\QrcodeController@goodsget');
 
 /**授权 */
-Route::post('/Menu/accredit','Menu\MenuController@accredit');
+Route::get('/qrcode/accredit','Qrcode\MenuController@accredit');
 
 
 /**
