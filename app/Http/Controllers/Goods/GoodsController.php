@@ -111,6 +111,8 @@ class GoodsController extends Controller
             'signature'=>$sign     // 必填，签名
         ];
         // dd($wxconfig);
+
+
         $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id;";
         $goods_num=DB::table('goods')->where(['goods_id'=>$goods_id])->value('goods_num');
         $where=[

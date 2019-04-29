@@ -30,6 +30,7 @@ class JssdkController extends Controller{
         ];
         // dd($arr);
         return view('jssdk/jssdk',['arr'=>$arr]);
+
     }
     public function geting(){
         $access_token=getaccesstoken();
