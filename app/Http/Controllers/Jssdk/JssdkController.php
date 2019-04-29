@@ -65,7 +65,6 @@ class JssdkController extends Controller{
         $name=$user['nickname'];
         header("Refresh:3;url='http://1809cuifangfang.comcto.com/goods/list/2'");
         echo "欢迎回来$name,等待跳转~~~";die;
-
         // $user_info=WxUserModel::where(['openid'=>$openid])->first();
         // if($user_info){
         //     echo "欢迎回来$name";die;

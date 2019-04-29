@@ -46,6 +46,7 @@ class MenuController extends Controller{
         //通过code换取网页授权access_token
         $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf6459da873fa2ef5&secret=84c923c15aa4e05ca40d3c59a135630f&code=$code&grant_type=authorization_code";
         $pesponse=json_decode(file_get_contents($url),true);
+
         $access_token=$pesponse['access_token'];
         $openid=$pesponse['openid'];
         //拉取用户信息(需scope为 snsapi_userinfo)
