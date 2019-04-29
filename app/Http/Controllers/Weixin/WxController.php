@@ -90,29 +90,53 @@ class WxController extends Controller{
                     'm_name'=>$u['nickname'],
                     'm_text'=> $content
             ];
-            $res=DB::table("goods")->where('goods_name', 'like', "%$content%")->first();
-            // var_dump($res);
-            $goods_name=$res->goods_name;
-            $goods_img=$res->goods_img;
-            $goods_id=$res->goods_id;
-            $goods_core=$res->goods_core;
-            $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id";
             $arr=DB::table('userrecord')->insert($info);
-            echo '<xml>
-                <ToUserName><![CDATA['.$openid.']]></ToUserName>
-                <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-                <CreateTime>'.time().'</CreateTime>
-                <MsgType><![CDATA[news]]></MsgType>
-                <ArticleCount>1</ArticleCount>
-                <Articles>
-                <item>
-                    <Title><![CDATA['.$goods_name.']]></Title>
-                    <Description><![CDATA['.$goods_core.']]></Description>
-                    <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
-                    <Url><![CDATA['.$url.']]></Url>
-                </item>
-                </Articles>
-            </xml>';
+            //模糊查询商品
+            $res=DB::table("goods")->where('goods_name', 'like', "%$content%")->first();
+            if(empty($res)){
+                $goods_name="php从入门到精通第4版 ";
+                $goods_img="";
+                $goods_id=11;
+                $goods_core="没有找到你要搜索的商品，为你推荐最火";
+                $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id";
+                echo '<xml>
+                    <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                    <CreateTime>'.time().'</CreateTime>
+                    <MsgType><![CDATA[news]]></MsgType>
+                    <ArticleCount>1</ArticleCount>
+                    <Articles>
+                    <item>
+                        <Title><![CDATA['.$goods_name.']]></Title>
+                        <Description><![CDATA['.$goods_core.']]></Description>
+                        <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                        <Url><![CDATA['.$url.']]></Url>
+                    </item>
+                    </Articles>
+                </xml>';
+            }else{
+                $goods_name=$res->goods_name;
+                $goods_img=$res->goods_img;
+                $goods_id=$res->goods_id;
+                $goods_core=$res->goods_core;
+                $url="http://1809cuifangfang.comcto.com/goods/list/$goods_id";
+                echo '<xml>
+                    <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                    <CreateTime>'.time().'</CreateTime>
+                    <MsgType><![CDATA[news]]></MsgType>
+                    <ArticleCount>1</ArticleCount>
+                    <Articles>
+                    <item>
+                        <Title><![CDATA['.$goods_name.']]></Title>
+                        <Description><![CDATA['.$goods_core.']]></Description>
+                        <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                        <Url><![CDATA['.$url.']]></Url>
+                    </item>
+                    </Articles>
+                </xml>';
+            }
+
             // echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
             //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
             //     <CreateTime>'.time().'</CreateTime>
