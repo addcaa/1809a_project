@@ -83,7 +83,6 @@ class WxController extends Controller{
                     ';
                 }
             }
-
             $text="还有什么可以帮助你的吗";
             $info=[
                     'openid'=>$openid,
@@ -118,6 +117,9 @@ class WxController extends Controller{
                 </xml>';
             }else{
                 $goods_name=$res->goods_name;
+                $key="goods_scc";
+                Redis::set($key,$goods_name);
+                // dd(Redis::get($key));
                 $goods_img=$res->goods_img;
                 // dd($goods_img);
                 $goods_id=$res->goods_id;
@@ -139,13 +141,6 @@ class WxController extends Controller{
                     </Articles>
                 </xml>';
             }
-            // echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
-            //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-            //     <CreateTime>'.time().'</CreateTime>
-            //     <MsgType><![CDATA[text]]></MsgType>
-            //    <Content>![CDATA['.$text.']</Content>
-            //     </xml>
-            //     ';
         }
         //获取图片
         if($MsgType=="image"){
