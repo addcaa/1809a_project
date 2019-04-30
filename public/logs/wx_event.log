@@ -928,3 +928,10 @@
 <Content><![CDATA[苹果]]></Content>
 <MsgId>22283714630365130</MsgId>
 </xml>
+2019-04-30 08:44:24<xml><ToUserName><![CDATA[gh_c5cc62e6fb85]]></ToUserName>
+<FromUserName><![CDATA[o4ekM6MX0DCu_8fmTXaECirRFjjc]]></FromUserName>
+<CreateTime>1556585035</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>

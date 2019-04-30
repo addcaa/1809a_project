@@ -30,26 +30,26 @@ class WxController extends Controller{
         $u=$this->getUserInfo($openid);
         // dd($u);
         $access_token=getaccesstoken();
-        if($event=="SCAN"){
-            $name="欢迎回来";
-            $desc="我也不知道";
-            $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
-            echo '<xml>
-                <ToUserName><![CDATA['.$openid.']]></ToUserName>
-                <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-                <CreateTime>'.time().'</CreateTime>
-                <MsgType><![CDATA[news]]></MsgType>
-                <ArticleCount>1</ArticleCount>
-                <Articles>
-                  <item>
-                    <Title><![CDATA['.$name.']]></Title>
-                    <Description><![CDATA['.$desc.']]></Description>
-                    <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
-                    <Url><![CDATA['.$url.']]></Url>
-                  </item>
-                </Articles>
-              </xml>';
-        }
+        // if($event=="SCAN"){
+        //     $name="欢迎回来";
+        //     $desc="我也不知道";
+        //     $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
+        //     echo '<xml>
+        //         <ToUserName><![CDATA['.$openid.']]></ToUserName>
+        //         <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+        //         <CreateTime>'.time().'</CreateTime>
+        //         <MsgType><![CDATA[news]]></MsgType>
+        //         <ArticleCount>1</ArticleCount>
+        //         <Articles>
+        //           <item>
+        //             <Title><![CDATA['.$name.']]></Title>
+        //             <Description><![CDATA['.$desc.']]></Description>
+        //             <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+        //             <Url><![CDATA['.$url.']]></Url>
+        //           </item>
+        //         </Articles>
+        //       </xml>';
+        // }
         //获取素材
         if($MsgType=="text"){
             if(strpos($content,'+天气')){
@@ -158,15 +158,23 @@ class WxController extends Controller{
         }
         //判断扫码
         if($event=='subscribe'){
+            $name="请输入商品名字字样";
+            echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+            <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+            <CreateTime>'.time().'</CreateTime>
+            <MsgType><![CDATA[text]]></MsgType>
+           <Content>![CDATA['.$name.']]</Content>
+            </xml>
+            ';
             // $eventkey=substr($EventKey,0,strpos($EventKey, '_'));
-            $eventkey= substr($EventKey,strpos($EventKey,'_')+1);
-            // dd($eventkey);
-            $info=[
-                'openid'=>$openid,
-                'nickname'=>$u['nickname'],
-                'eventkey'=>$eventkey
-            ];
-            $arr=DB::table('wx_user_code')->insert($info);
+            // $eventkey= substr($EventKey,strpos($EventKey,'_')+1);
+            // // dd($eventkey);
+            // $info=[
+            //     'openid'=>$openid,
+            //     'nickname'=>$u['nickname'],
+            //     'eventkey'=>$eventkey
+            // ];
+            // $arr=DB::table('wx_user_code')->insert($info);
             // $user_info=DB::table('userwx')->where(['openid'=>$openid])->first();
             // if($user_info){
                 // $res=DB::table('userwx')->where(['openid'=>$openid])->update(['is_server'=>1]);
@@ -177,24 +185,24 @@ class WxController extends Controller{
             //    <Content>![CDATA['.'欢迎回来'.$user_info->nickname.']]</Content>
             //     </xml>
             //     ';
-                $name="最新商品";
-                $desc="aaa";
-                $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
-                echo '<xml>
-                    <ToUserName><![CDATA['.$openid.']]></ToUserName>
-                    <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-                    <CreateTime>'.time().'</CreateTime>
-                    <MsgType><![CDATA[news]]></MsgType>
-                    <ArticleCount>1</ArticleCount>
-                    <Articles>
-                      <item>
-                        <Title><![CDATA['.$name.']]></Title>
-                        <Description><![CDATA['.$desc.']]></Description>
-                        <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
-                        <Url><![CDATA['.$url.']]></Url>
-                      </item>
-                    </Articles>
-                  </xml>';
+                // $name="最新商品";
+                // $desc="aaa";
+                // $url="http://1809cuifangfang.comcto.com/qrcode/goodsget";
+                // echo '<xml>
+                //     <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                //     <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                //     <CreateTime>'.time().'</CreateTime>
+                //     <MsgType><![CDATA[news]]></MsgType>
+                //     <ArticleCount>1</ArticleCount>
+                //     <Articles>
+                //       <item>
+                //         <Title><![CDATA['.$name.']]></Title>
+                //         <Description><![CDATA['.$desc.']]></Description>
+                //         <PicUrl><![CDATA['.'https://t1.huanqiu.cn/d488227386acf540fb202c1a6fa22059.jpeg'.']]></PicUrl>
+                //         <Url><![CDATA['.$url.']]></Url>
+                //       </item>
+                //     </Articles>
+                //   </xml>';
         //     }else{
         //         $u=$this->getUserInfo($openid);
         //         $info=[
@@ -206,13 +214,7 @@ class WxController extends Controller{
         //         ];
         //         // dd($info);
         //         $arr=DB::table('userwx')->insert($info);
-        //         echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
-        //         <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-        //         <CreateTime>'.time().'</CreateTime>
-        //         <MsgType><![CDATA[text]]></MsgType>
-        //        <Content>![CDATA['.'欢迎关注'.$u['nickname'].']]</Content>
-        //         </xml>
-        //         ';
+
         //     }
         // }else if($event=="unsubscribe"){
         //     // echo "取关";

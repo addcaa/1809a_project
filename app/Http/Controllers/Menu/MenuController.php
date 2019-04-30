@@ -13,9 +13,10 @@ class MenuController extends Controller{
     public function menu(){
         $access_token=getaccesstoken();
         // dd($access_token);
+        $a=urlencode("http://1809cuifangfang.comcto.com/menu/sign");
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
         $surl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/jssdk/getu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        $sign="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=http://1809cuifangfang.comcto.com/menu/sign&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        $sign="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf6459da873fa2ef5&redirect_uri=$a&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         $msg=[
             "button"=>[
                [

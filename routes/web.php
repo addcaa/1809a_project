@@ -60,6 +60,9 @@ Route::get('/qrcode/accredit','Qrcode\MenuController@accredit');
 //**签到 */
 Route::get('/menu/sign','Menu\MenuController@sign');
 
+
+Route::get('/menu/exam','Exam\ExamController@exam');
+
 /**
  * 后台
  */
